@@ -1,4 +1,4 @@
-/speckit.specify
+/speckit-specify
 
 [pegar aquí la spec manual]
 
