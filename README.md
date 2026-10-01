@@ -19,7 +19,7 @@ código de los productos descritos en los ejemplos.
 | [`modernización guiada/`](<modernización guiada>) | Modernización incremental | GesFact | Selección de módulos, extracción del motor de cálculo con *strangler fig* y corrección delta del prorrateo. |
 | [`spec-anchored/`](<spec-anchored>) | OpenSpec y control de drift | CartaYa | Configuración anclada, carta digital, pedidos de mesa, panel de cocina y un prompt de cambio que sirve como ejemplo de *spec drift*. |
 | [`SKILLs/spec-audit/`](<SKILLs/spec-audit>) | Skill de auditoría | CartaYa | Instrucciones para comparar specs vivas, código, tests, entorno, historial y cambios activos sin modificar nada. |
-| [`github spec kit/`](<github spec kit>) | Inicialización | — | Comandos mínimos para inicializar un proyecto con GitHub Spec Kit y añadir su extensión Git. |
+| [`github spec kit/`](<github spec kit>) | GitHub Spec Kit | — | Referencia completa de comandos de terminal, habilidades del agente, extensiones, workflows y bundles en [`github spec kit.md`](<github spec kit/github spec kit.md>). |
 
 ## Recorridos recomendados
 
@@ -67,7 +67,9 @@ Algunos prompts son deliberadamente borradores o ejercicios y contienen decision
 
 ## Herramientas mencionadas
 
-La documentación hace referencia a Git, GitHub Spec Kit, OpenSpec y worktrees. El único comando de inicialización explicitado en el material es:
+La documentación hace referencia a Git, GitHub Spec Kit, OpenSpec y worktrees. La referencia completa y actualizada de GitHub Spec Kit está en [`github spec kit/github spec kit.md`](<github spec kit/github spec kit.md>) e incluye comandos de terminal, comandos del agente para Codex, el flujo SDD, extensiones de bugs e ideas, integraciones, presets, workflows y bundles.
+
+La secuencia mínima de inicialización es:
 
 ```text
 specify init --here --force --integration codex

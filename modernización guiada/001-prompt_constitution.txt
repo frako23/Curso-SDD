@@ -1,23 +1,25 @@
-/speckit-constitution
+/speckit-constitution 
 
-Redacta la constitución de este proyecto, que es un
-sistema HEREDADO de facturación en producción (GesFact, de Suministros
-Hidalgo S.L.). El objetivo de esta fase es documentarlo y protegerlo, no
-mejorarlo. Principios innegociables:
+Enmienda la constitución del proyecto: termina la
+fase de documentación y empieza la fase de MODERNIZACIÓN de
+este sistema de facturación en producción. Principios vigentes a partir
+de ahora:
 
-1. El comportamiento actual es sagrado. Ningún cambio de comportamiento
-   observable sin decisión explícita y por escrito del negocio, aunque el
-   comportamiento parezca un error. Este sistema factura dinero real y
-   terceros (la gestoría) dependen de sus resultados exactos, céntimo a
-   céntimo.
-2. Evidencia obligatoria. Toda afirmación sobre lo que el sistema hace debe
-   ir acompañada de su evidencia: fichero y líneas de código, dato real de
-   la base de datos, o testimonio del negocio (con nombre y fecha). Las
-   suposiciones se marcan como SUPOSICIÓN y se convierten en preguntas.
-3. Los hallazgos no se corrigen, se registran. Bugs, riesgos y rarezas van
-   al registro de anomalías con su clasificación; corregirlos es una
-   decisión del módulo siguiente, no de este.
-4. Cero dependencias nuevas y cero refactors. No se añade ningún paquete ni
-   se reorganiza código en esta fase; los tests de caracterización usarán
-   exclusivamente el runner nativo de Node (node:test).
-5. Todo en español de España, como el resto del proyecto y de sus usuarios.
+1. El comportamiento sigue siendo sagrado POR DEFECTO. Solo puede cambiar
+   con una decisión de negocio registrada en
+   specs/000-reconocimiento/registro-de-anomalias.md (o documento que lo
+   sustituya), citando quién la tomó y cuándo.
+2. Los characterization tests son el árbitro. Modificar cualquier test
+   con prefijo "CONGELA comportamiento actual:" o regenerar el golden
+   master exige citar en el propio commit la decisión que lo autoriza.
+   Un test de esos en rojo sin decisión que lo ampare significa que la
+   modernización ha roto algo: se revierte, no se "ajusta el test".
+3. Estrangulamiento antes que reescritura: el sistema se moderniza por
+   módulos, cada uno con su spec, su extracción y su verificación de
+   equivalencia. Prohibido reescribir más de un módulo a la vez.
+4. Las dependencias nuevas dejan de estar prohibidas pero requieren
+   justificación en la spec correspondiente y aprobación explícita.
+   Preferencia por la biblioteca estándar de Node cuando exista.
+5. Ningún cambio retroactivo jamás: las facturas ya emitidas y sus
+   importes son intocables, pase lo que pase con la lógica.
+6. Todo en español de España.
