@@ -1,0 +1,8 @@
+Selecciono la opción C. Crea un documento de pre-especificación para enviarlo a GitHub speckit specification que detalle por completo esta opción. Creo que al menos debería tener las siguientes secciones. Añade alguna adicional si lo consideras oportuno.
+
+## Objetivo
+## Usuarios
+## Dirección visual elegida (decisión de producto: dirección A)
+## Reglas de diseño (tokens)
+## Criterios de aceptación verificables (sí/no)
+## Fuera de alcance

@@ -1,0 +1,63 @@
+/speckit-specify
+
+Unificación del prorrateo en una única convención (días reales). Spec
+DELTA sobre specs/005-cuotas-contrato-prorrateo-remesa: ejecuta la
+decisión de negocio D-01 (Paco/Puri, julio 2026) ya ratificada en esa
+spec, que declaró OFICIAL la fórmula de la remesa (días reales del mes,
+el día 31 SÍ se cobra) y dejó la fórmula de "30 días fijos" como
+histórica a unificar en la modernización. Con el motor ya extraído en la
+spec 009 (motor/calculo.js), este delta cierra en CÓDIGO la anomalía
+A-01 (doble prorrateo divergente), que hoy está cerrada solo en decisión.
+
+Qué modifica de la 005:
+- REVOCA FR-004 y FR-005 (calcularProrrateo a 30 fijos con tope a 30 y
+  día 31 no facturable) como comportamiento vigente. La User Story 2
+  (baja de contrato a 30 fijos) deja de ser la convención de producción.
+- Deja intactas FR-001/002/003 (la remesa a días reales): no cambian,
+  siguen siendo la fórmula oficial. El delta las convierte en la ÚNICA
+  convención del sistema.
+
+Cambio de comportamiento:
+- motor/calculo.js: calcularProrrateo pasa a prorratear sobre los DÍAS
+  REALES del mes (util.diasDelMes de las fechas dadas), no sobre 30
+  fijos, de modo que la baja de contrato y la remesa producen el MISMO
+  importe para el mismo periodo. Se elimina el tope a 30 días: en meses
+  de 31, el día 31 se cobra (coherente con D-01).
+- routes/contratos.js (la pantalla de baja) sigue llamando a
+  calcularProrrateo por la misma superficie pública del motor; no cambia
+  su firma. Tras el delta, TODO el sistema prorratea con una única
+  convención y la divergencia de A-01 (0,97 € en el caso 60 €, 16–30
+  julio) desaparece.
+
+Ejemplo normativo: contrato de 60 €/mes, servicio del 16 al 30 de julio
+(mes de 31 días). Antes: la baja calculaba 60/30×15 = 30,00 € y la
+remesa 60/31×15 = 29,03 € (divergencia 0,97 €, A-01). Después: ambas
+calculan 60/31×15 = 29,03 €. Un mes completo sigue dando la cuota íntegra
+(p. ej. febrero de 28 días: 90/28×28 = 90,00 €), exactamente igual que
+antes en la remesa.
+
+Restricción constitucional — CERO RETROACTIVIDAD: las facturas de baja
+ya emitidas a mano con la convención de 30 días NO se tocan, no se
+rectifican de oficio y no se recalculan. La corrección aplica solo a
+prorrateos calculados a partir de la fecha de despliegue.
+
+Fuera de alcance (no lo toca este delta): la anomalía A-15 (prorrateo
+negativo → 0,00 € en silencio y cálculo intermensual sin sentido), cuya
+corrección quedó diferida a D-03 y se aborda en un delta aparte.
+
+Criterios de aceptación:
+- El test que CONGELA el comportamiento antiguo de calcularProrrateo (30
+  fijos, tope a 30, día 31 no cobrado) en test/calculo.prorrateo.test.js
+  se SUSTITUYE por el del nuevo comportamiento (días reales), citando
+  A-01/D-01 en el comentario.
+- Para el caso 60 €, 16–30 julio, calcularProrrateo devuelve ahora
+  29,03 € (antes 30,00 €).
+- Para un mes completo, calcularProrrateo devuelve la cuota íntegra
+  (mismo resultado que antes).
+- El oráculo de equivalencia del anillo C (test/legado/calculo-heredado.js)
+  NO se usa para calcularProrrateo tras este delta: es el único punto donde
+  el motor deja de ser equivalente verbatim al legado, y debe quedar
+  documentado como el cambio de comportamiento intencionado de esta spec.
+- Una remesa mensual de un mes cualquiera produce EXACTAMENTE los mismos
+  importes que antes del delta (la remesa no cambia; solo se le une la
+  baja de contrato).

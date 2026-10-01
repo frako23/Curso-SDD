@@ -1,0 +1,4 @@
+Genera specs/MAPA.md, el mapa global de specs de CitaClara: tabla con
+número, nombre, propietario, estado (borrador / en revisión /
+implementada), y relaciones (qué specs consume y quién la consume),
+seguida de un párrafo por spec con su dominio en una frase.

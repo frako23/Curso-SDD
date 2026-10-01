@@ -1,0 +1,29 @@
+/speckit-specify 
+
+Extracción y modernización del motor de cálculo de
+GesFact según el patrón strangler fig. Esta spec NO redefine el
+comportamiento del motor: el comportamiento es EXACTAMENTE el
+especificado en specs/ (001, 002 y 003) que actúa como contrato 
+inmutable de esta obra. Alcance de esta spec:
+
+- Nueva implementación en motor/ con JavaScript moderno y 
+  exportando exactamente las mismas funciones y firmas que
+  services/calculo.js: calcularLinea, calcularFactura,
+  calcularProrrateo, porcentajeDescuento y recargoPara. Cero
+  dependencias externas.
+- Cero cambios de comportamiento en esta spec. Las correcciones de
+  negocio aprobadas (anomalías) NO entran aquí: se harán
+  después como specs delta independientes. El motor nuevo debe
+  reproducir también los comportamientos anómalos documentados.
+- Verificación de equivalencia en tres anillos (criterios de
+  aceptación): (a) la suite de characterization tests completa pasa en
+  verde ejecutada contra motor/; (b) el golden master pasa sin
+  regenerar ejecutado contra motor/; (c) un test de equivalencia
+  comparativa ejecuta ambas implementaciones sobre una batería masiva
+  y determinista de casos generados (semilla fija) y exige igualdad
+  exacta campo a campo.
+- Conmutación final: services/calculo.js queda como fachada que
+  reexporta motor/ sin cambiar su ruta ni su API; los consumidores no
+  se modifican.
+- Fuera de alcance: cambiar consumidores, cambiar la interfaz, las
+  correcciones, y cualquier módulo que no sea el motor.

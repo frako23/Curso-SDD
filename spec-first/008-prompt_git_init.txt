@@ -1,0 +1,2 @@
+Inicializa Git en este proyecto y haz el primer commit incluyendo todo lo que existe, con un mensaje que deje claro que es la foto de la versión publicada a día de hoy.
+Antes de tocar nada, dime qué vas a hacer; después, enséñame el resultado y confírmame que a partir de ahora existe una foto a la que siempre podremos volver.

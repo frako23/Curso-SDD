@@ -1,0 +1,2 @@
+Incluye en `plan.md`, como último paso de la fase final, un paso de mantenimiento:
+“Actualizar `CLAUDE.md` con las decisiones de diseño y convenciones nuevas de esta feature, una línea por decisión, con referencia a la spec (p. ej. ‘[003] ...’). No incluyas entradas por incluir, asegúrate siempre de que es información transversal y relevante para el proyecto que puedan aprovechar futuras features.”

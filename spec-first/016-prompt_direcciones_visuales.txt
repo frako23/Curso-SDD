@@ -1,0 +1,3 @@
+Proponme 3 direcciones visuales para esta app, claramente distintas entre sí. Cada una en 5 líneas: nombre, dos referencias de productos reales, paleta con códigos de color, tipografía concreta y qué sensación transmite a un cliente que recibe el presupuesto.
+
+No toques código: solo direcciones.

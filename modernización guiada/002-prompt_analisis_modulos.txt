@@ -1,0 +1,9 @@
+Analiza qué módulo de GesFact conviene extraer primero en la
+modernización, evaluando cada candidato según:
+(1) valor de negocio de modernizarlo (qué decisiones pendientes del
+registro de anomalías lo tocan); (2) cobertura actual de characterization
+tests (cuenta los tests de tests/ que lo ejercitan); (3) acoplamiento:
+lista EXHAUSTIVA de consumidores — quién importa qué función, con fichero
+y línea — y si sus funciones son puras o tocan base de datos / red /
+reloj. Concluye con una recomendación razonada y el mapa de consumidores
+del módulo elegido en specs/000-reconocimiento/consumidores-motor.md.

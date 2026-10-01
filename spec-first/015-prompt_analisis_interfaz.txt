@@ -1,0 +1,1 @@
+Haz de director de arte exigente. Critica esta interfaz y dame las 7 razones concretas por las que NO parece una aplicación de 2026. Sé específico en cada una: tipografía, color, espaciado, jerarquía visual, componentes, estados y densidad. Nada de generalidades: señala elementos exactos de la captura. Aún no propongas soluciones.

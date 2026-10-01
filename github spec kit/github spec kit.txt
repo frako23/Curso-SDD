@@ -1,0 +1,6 @@
+INICIALIZAR PROYECTO LEGACY
+specify init --here --force --integration codex
+
+AÑADIR EXTENSIÓN
+specify extension add git
+
