@@ -1,0 +1,16 @@
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Temporales y logs locales
+*.tmp
+*.bak
+*.log
+
+# Salidas locales de herramientas
+coverage/
+dist/
+build/
