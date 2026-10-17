@@ -5162,6 +5162,60 @@ Cat&#225;logos de integraciones:
 Permiten consultar, agregar o quitar fuentes de descubrimiento de
 integraciones.
 
+### Usar Claude Code como integraci&#243;n
+
+La clave de la integraci&#243;n es claude. Cada bloque siguiente es independiente y
+se puede copiar por separado. Ejecutarlos dentro de la carpeta del proyecto.
+
+Proyecto nuevo con Claude:
+
+    specify init my-project --integration claude --script ps
+
+Inicializar la carpeta actual con Claude:
+
+    specify init --here --integration claude
+
+Inicializar la carpeta actual con Claude sobre archivos existentes:
+
+    specify init --here --force --integration claude
+
+Instalar Claude junto a la integraci&#243;n que ya existe:
+
+    specify integration install claude
+
+Cambiar la integraci&#243;n existente (por ejemplo codex) por Claude:
+
+    specify integration switch claude
+
+Cambiar a Claude y refrescar tambi&#233;n la infraestructura compartida:
+
+    specify integration switch claude --refresh-shared-infra
+
+Seleccionar Claude como predeterminada si ya est&#225; instalada:
+
+    specify integration use claude
+
+Quitar la integraci&#243;n anterior despu&#233;s de cambiar a Claude:
+
+    specify integration uninstall codex
+
+Actualizar los archivos y comandos de Claude tras actualizar el CLI:
+
+    specify integration upgrade claude
+
+Comprobar el estado de las integraciones instaladas:
+
+    specify integration status
+
+Comprobar que el ejecutable de Claude Code est&#225; disponible:
+
+    specify check
+
+Con Claude, las habilidades se invocan en el chat de Claude Code con el prefijo
+/speckit-, por ejemplo /speckit-specify en lugar de $speckit-specify. Al
+cambiar de Codex a Claude, sustituir $speckit- por /speckit- en los ejemplos
+de las secciones siguientes.
+
 ## 6. Extensiones
 
 Las extensiones agregan comandos, plantillas, scripts, hooks o procesos
@@ -5637,6 +5691,32 @@ Si converge agrega tareas, repetir:
     $speckit-implement
     $speckit-converge
 
+### Variante para Claude Code
+
+Preparaci&#243;n del proyecto:
+
+    uv tool install specify-cli
+    specify init mi-proyecto --integration claude --script ps
+    cd mi-proyecto
+    specify extension add git
+
+Flujo en el chat de Claude Code:
+
+    /speckit-constitution Define principles for quality, testing and maintainability.
+    /speckit-specify Describe the feature and its user stories.
+    /speckit-clarify Resolve the ambiguous requirements.
+    /speckit-plan Choose the architecture and technology.
+    /speckit-checklist
+    /speckit-tasks
+    /speckit-analyze
+    /speckit-implement
+    /speckit-converge
+
+Si converge agrega tareas, repetir:
+
+    /speckit-implement
+    /speckit-converge
+
 ## 16. Fuentes oficiales
 
 - README: https://github.com/github/spec-kit
@@ -5677,7 +5757,7 @@ specify integration install &lt;key&gt; --force
 specify integration switch &lt;key&gt; --refresh-shared-infra
 specify integration scaffold &lt;key&gt; specify integration catalog list
 specify integration catalog add &lt;url&gt; [--name &lt;nombre&gt;]
-specify integration catalog remove &lt;index&gt; specify extension search [query] specify extension add &lt;name&gt;
+specify integration catalog remove &lt;index&gt; specify init my-project --integration claude --script ps specify init --here --integration claude specify init --here --force --integration claude specify integration install claude specify integration switch claude specify integration switch claude --refresh-shared-infra specify integration use claude specify integration uninstall codex specify integration upgrade claude specify integration status specify extension search [query] specify extension add &lt;name&gt;
 specify extension add &lt;name&gt; --version &lt;version&gt;
 specify extension add &lt;name&gt; --dev &lt;directorio&gt;
 specify extension add &lt;name&gt; --from &lt;url&gt;
@@ -5799,7 +5879,19 @@ $speckit-tasks
 $speckit-analyze
 $speckit-implement
 $speckit-converge $speckit-implement
-$speckit-converge specify --version specify -V specify version specify version --features specify version --features --json specify init my-project --integration codex specify init --here --integration codex specify init --here --force --integration codex specify init my-project --integration codex --script ps specify init my-project --integration codex --ignore-agent-tools specify init my-project --integration codex --non-interactive specify init my-project --integration codex --preset &lt;preset-id&gt; specify init my-project --integration generic --integration-options=&quot;--commands-dir .myagent/cmds&quot; specify self upgrade specify self upgrade --dry-run specify self upgrade --tag vX.Y.Z specify integration status specify integration upgrade &lt;key&gt; specify extension update specify integration list specify integration list --catalog specify integration search [query] specify integration info &lt;integration-id&gt; specify integration install &lt;key&gt; specify integration uninstall [&lt;key&gt;] specify integration switch &lt;key&gt; specify integration use &lt;key&gt; specify integration upgrade [&lt;key&gt;] specify integration status --json specify integration install generic --integration-options=&quot;--commands-dir .myagent/cmds&quot; specify integration install generic --integration-options=&quot;--commands-dir .myagent/skills --skills&quot; specify integration install &lt;key&gt; --force specify integration switch &lt;key&gt; --refresh-shared-infra specify integration scaffold &lt;key&gt; specify integration catalog list specify integration catalog add &lt;url&gt; [--name &lt;nombre&gt;] specify integration catalog remove &lt;index&gt; specify extension add &lt;name&gt; specify extension add &lt;name&gt; --version &lt;version&gt; specify extension add &lt;name&gt; --dev &lt;directorio&gt; specify extension add &lt;name&gt; --from &lt;url&gt; specify extension add &lt;name&gt; --priority &lt;N&gt; specify extension add github specify extension list specify extension list --available specify extension list --all specify extension list --json specify extension info &lt;name&gt; specify extension info &lt;name&gt; --versions specify extension update [&lt;name&gt;] specify extension enable &lt;name&gt; specify extension disable &lt;name&gt; specify extension set-priority &lt;name&gt; &lt;priority&gt; specify extension remove &lt;name&gt; specify extension remove &lt;name&gt; --keep-config specify extension remove &lt;name&gt; --force specify extension catalog list specify extension catalog add &lt;url&gt; --name &lt;name&gt; specify extension catalog remove &lt;name&gt; specify preset search [query] specify preset add [&lt;preset-id&gt;] specify preset add &lt;preset-id&gt; --dev &lt;directorio&gt; specify preset add &lt;preset-id&gt; --from &lt;url&gt; specify preset add &lt;preset-id&gt; --priority &lt;N&gt; specify preset update &lt;preset-id&gt; specify preset remove &lt;preset-id&gt; specify preset list specify preset list --json specify preset info &lt;preset-id&gt; specify preset resolve &lt;name&gt; specify preset enable &lt;preset-id&gt; specify preset disable &lt;preset-id&gt; specify preset set-priority &lt;preset-id&gt; &lt;priority&gt; specify preset catalog list specify preset catalog add &lt;url&gt; --name &lt;name&gt; specify preset catalog remove &lt;name&gt; specify artifact list --json specify artifact info &lt;name&gt; --json specify artifact info &lt;name&gt; --json --kind command specify workflow run &lt;source&gt; specify workflow run speckit -i spec=&quot;Build a kanban board&quot; specify workflow run &lt;archivo.yml&gt; --json specify workflow resume &lt;run-id&gt; specify workflow resume &lt;run-id&gt; --input &lt;clave&gt;=&lt;valor&gt; specify workflow resume &lt;run-id&gt; --json specify workflow status [&lt;run-id&gt;] specify workflow status [&lt;run-id&gt;] --json specify workflow list specify workflow add &lt;source&gt; specify workflow add &lt;source&gt; --dev specify workflow add &lt;workflow-id&gt; --from &lt;url&gt; specify workflow add &lt;workflow-id&gt; --version &lt;version&gt; specify workflow update [&lt;workflow-id&gt;] specify workflow enable &lt;workflow-id&gt; specify workflow disable &lt;workflow-id&gt; specify workflow remove &lt;workflow-id&gt; specify workflow search [query] specify workflow info &lt;workflow-id&gt; specify workflow info &lt;workflow-id&gt; --versions specify workflow resolve &lt;workflow-id&gt; specify workflow overlay add &lt;archivo-overlay.yml&gt; --priority &lt;N&gt; specify workflow overlay list &lt;workflow-id&gt; specify workflow overlay set-priority &lt;workflow-id&gt; &lt;overlay-id&gt; &lt;N&gt; specify workflow overlay enable &lt;workflow-id&gt; &lt;overlay-id&gt; specify workflow overlay disable &lt;workflow-id&gt; &lt;overlay-id&gt; specify workflow overlay remove &lt;workflow-id&gt; &lt;overlay-id&gt; specify workflow catalog list specify workflow catalog add &lt;url&gt; [--name &lt;name&gt;] specify workflow catalog remove &lt;index&gt; specify workflow step list specify workflow step add &lt;id&gt; specify workflow step remove &lt;id&gt; specify workflow step search [query] specify workflow step info &lt;id&gt; specify workflow step catalog list specify workflow step catalog add &lt;url&gt; specify workflow step catalog remove &lt;index&gt; specify bundle search [query] specify bundle search [query] --offline specify bundle search [query] --json specify bundle info &lt;bundle-id&gt; specify bundle info &lt;bundle-id&gt; --offline --json specify bundle install &lt;bundle-id | path&gt; specify bundle add &lt;bundle-id&gt; specify bundle install &lt;path&gt; --refresh specify bundle update [&lt;bundle-id&gt;] specify bundle update --all specify bundle remove &lt;bundle-id&gt; specify bundle list specify bundle list --json specify bundle init [&lt;bundle-id&gt;] specify bundle validate specify bundle validate --path &lt;directorio-o-bundle.yml&gt; specify bundle build specify bundle build --path &lt;directorio&gt; --output &lt;directorio-salida&gt; specify bundle install bugfix specify bundle add assess specify bundle catalog list specify bundle catalog add &lt;url&gt; --policy install-allowed --priority &lt;N&gt; specify bundle catalog remove &lt;id-o-url&gt; $speckit-constitution $speckit-specify $speckit-clarify $speckit-plan $speckit-checklist $speckit-implement $speckit-checklist Focus on authentication and authorization requirements. $speckit-implement Implement only the Setup and Foundational phases. $speckit-github-taskstoissues $speckit-bug-assess &quot;Submitting an empty password crashes the login form.&quot; slug=login-crash $speckit-bug-fix slug=login-crash $speckit-bug-test slug=login-crash $speckit-assess-intake &quot;Let users work offline and sync when they reconnect.&quot; slug=offline-mode $speckit-assess-research slug=offline-mode $speckit-assess-define slug=offline-mode $speckit-assess-shape slug=offline-mode $speckit-assess-decide slug=offline-mode $speckit-git-initialize $speckit-git-feature $speckit-git-validate $speckit-git-remote $speckit-git-commit specify init mi-proyecto --integration codex --script ps $speckit-constitution Define principles for quality, testing and maintainability. $speckit-specify Describe the feature and its user stories. $speckit-clarify Resolve the ambiguous requirements. $speckit-plan Choose the architecture and technology.">
+$speckit-converge uv tool install specify-cli
+specify init mi-proyecto --integration claude --script ps
+cd mi-proyecto
+specify extension add git /speckit-constitution Define principles for quality, testing and maintainability.
+/speckit-specify Describe the feature and its user stories.
+/speckit-clarify Resolve the ambiguous requirements.
+/speckit-plan Choose the architecture and technology.
+/speckit-checklist
+/speckit-tasks
+/speckit-analyze
+/speckit-implement
+/speckit-converge /speckit-implement
+/speckit-converge specify --version specify -V specify version specify version --features specify version --features --json specify init my-project --integration codex specify init --here --integration codex specify init --here --force --integration codex specify init my-project --integration codex --script ps specify init my-project --integration codex --ignore-agent-tools specify init my-project --integration codex --non-interactive specify init my-project --integration codex --preset &lt;preset-id&gt; specify init my-project --integration generic --integration-options=&quot;--commands-dir .myagent/cmds&quot; specify self upgrade specify self upgrade --dry-run specify self upgrade --tag vX.Y.Z specify integration upgrade &lt;key&gt; specify extension update specify integration list specify integration list --catalog specify integration search [query] specify integration info &lt;integration-id&gt; specify integration install &lt;key&gt; specify integration uninstall [&lt;key&gt;] specify integration switch &lt;key&gt; specify integration use &lt;key&gt; specify integration upgrade [&lt;key&gt;] specify integration status --json specify integration install generic --integration-options=&quot;--commands-dir .myagent/cmds&quot; specify integration install generic --integration-options=&quot;--commands-dir .myagent/skills --skills&quot; specify integration install &lt;key&gt; --force specify integration switch &lt;key&gt; --refresh-shared-infra specify integration scaffold &lt;key&gt; specify integration catalog list specify integration catalog add &lt;url&gt; [--name &lt;nombre&gt;] specify integration catalog remove &lt;index&gt; /speckit-, por ejemplo /speckit-specify en lugar de $speckit-specify. Al specify extension add &lt;name&gt; specify extension add &lt;name&gt; --version &lt;version&gt; specify extension add &lt;name&gt; --dev &lt;directorio&gt; specify extension add &lt;name&gt; --from &lt;url&gt; specify extension add &lt;name&gt; --priority &lt;N&gt; specify extension add github specify extension list specify extension list --available specify extension list --all specify extension list --json specify extension info &lt;name&gt; specify extension info &lt;name&gt; --versions specify extension update [&lt;name&gt;] specify extension enable &lt;name&gt; specify extension disable &lt;name&gt; specify extension set-priority &lt;name&gt; &lt;priority&gt; specify extension remove &lt;name&gt; specify extension remove &lt;name&gt; --keep-config specify extension remove &lt;name&gt; --force specify extension catalog list specify extension catalog add &lt;url&gt; --name &lt;name&gt; specify extension catalog remove &lt;name&gt; specify preset search [query] specify preset add [&lt;preset-id&gt;] specify preset add &lt;preset-id&gt; --dev &lt;directorio&gt; specify preset add &lt;preset-id&gt; --from &lt;url&gt; specify preset add &lt;preset-id&gt; --priority &lt;N&gt; specify preset update &lt;preset-id&gt; specify preset remove &lt;preset-id&gt; specify preset list specify preset list --json specify preset info &lt;preset-id&gt; specify preset resolve &lt;name&gt; specify preset enable &lt;preset-id&gt; specify preset disable &lt;preset-id&gt; specify preset set-priority &lt;preset-id&gt; &lt;priority&gt; specify preset catalog list specify preset catalog add &lt;url&gt; --name &lt;name&gt; specify preset catalog remove &lt;name&gt; specify artifact list --json specify artifact info &lt;name&gt; --json specify artifact info &lt;name&gt; --json --kind command specify workflow run &lt;source&gt; specify workflow run speckit -i spec=&quot;Build a kanban board&quot; specify workflow run &lt;archivo.yml&gt; --json specify workflow resume &lt;run-id&gt; specify workflow resume &lt;run-id&gt; --input &lt;clave&gt;=&lt;valor&gt; specify workflow resume &lt;run-id&gt; --json specify workflow status [&lt;run-id&gt;] specify workflow status [&lt;run-id&gt;] --json specify workflow list specify workflow add &lt;source&gt; specify workflow add &lt;source&gt; --dev specify workflow add &lt;workflow-id&gt; --from &lt;url&gt; specify workflow add &lt;workflow-id&gt; --version &lt;version&gt; specify workflow update [&lt;workflow-id&gt;] specify workflow enable &lt;workflow-id&gt; specify workflow disable &lt;workflow-id&gt; specify workflow remove &lt;workflow-id&gt; specify workflow search [query] specify workflow info &lt;workflow-id&gt; specify workflow info &lt;workflow-id&gt; --versions specify workflow resolve &lt;workflow-id&gt; specify workflow overlay add &lt;archivo-overlay.yml&gt; --priority &lt;N&gt; specify workflow overlay list &lt;workflow-id&gt; specify workflow overlay set-priority &lt;workflow-id&gt; &lt;overlay-id&gt; &lt;N&gt; specify workflow overlay enable &lt;workflow-id&gt; &lt;overlay-id&gt; specify workflow overlay disable &lt;workflow-id&gt; &lt;overlay-id&gt; specify workflow overlay remove &lt;workflow-id&gt; &lt;overlay-id&gt; specify workflow catalog list specify workflow catalog add &lt;url&gt; [--name &lt;name&gt;] specify workflow catalog remove &lt;index&gt; specify workflow step list specify workflow step add &lt;id&gt; specify workflow step remove &lt;id&gt; specify workflow step search [query] specify workflow step info &lt;id&gt; specify workflow step catalog list specify workflow step catalog add &lt;url&gt; specify workflow step catalog remove &lt;index&gt; specify bundle search [query] specify bundle search [query] --offline specify bundle search [query] --json specify bundle info &lt;bundle-id&gt; specify bundle info &lt;bundle-id&gt; --offline --json specify bundle install &lt;bundle-id | path&gt; specify bundle add &lt;bundle-id&gt; specify bundle install &lt;path&gt; --refresh specify bundle update [&lt;bundle-id&gt;] specify bundle update --all specify bundle remove &lt;bundle-id&gt; specify bundle list specify bundle list --json specify bundle init [&lt;bundle-id&gt;] specify bundle validate specify bundle validate --path &lt;directorio-o-bundle.yml&gt; specify bundle build specify bundle build --path &lt;directorio&gt; --output &lt;directorio-salida&gt; specify bundle install bugfix specify bundle add assess specify bundle catalog list specify bundle catalog add &lt;url&gt; --policy install-allowed --priority &lt;N&gt; specify bundle catalog remove &lt;id-o-url&gt; $speckit-constitution $speckit-specify $speckit-clarify $speckit-plan $speckit-checklist $speckit-implement $speckit-checklist Focus on authentication and authorization requirements. $speckit-implement Implement only the Setup and Foundational phases. $speckit-github-taskstoissues $speckit-bug-assess &quot;Submitting an empty password crashes the login form.&quot; slug=login-crash $speckit-bug-fix slug=login-crash $speckit-bug-test slug=login-crash $speckit-assess-intake &quot;Let users work offline and sync when they reconnect.&quot; slug=offline-mode $speckit-assess-research slug=offline-mode $speckit-assess-define slug=offline-mode $speckit-assess-shape slug=offline-mode $speckit-assess-decide slug=offline-mode $speckit-git-initialize $speckit-git-feature $speckit-git-validate $speckit-git-remote $speckit-git-commit specify init mi-proyecto --integration codex --script ps $speckit-constitution Define principles for quality, testing and maintainability. $speckit-specify Describe the feature and its user stories. $speckit-clarify Resolve the ambiguous requirements. $speckit-plan Choose the architecture and technology. specify init mi-proyecto --integration claude --script ps /speckit-constitution Define principles for quality, testing and maintainability. /speckit-specify Describe the feature and its user stories. /speckit-clarify Resolve the ambiguous requirements. /speckit-plan Choose the architecture and technology. /speckit-checklist /speckit-tasks /speckit-analyze /speckit-implement /speckit-converge">
           <h3>Referencia completa de GitHub Spec Kit</h3>
           <div class="document-meta">
             <code>github spec kit/github spec kit.md</code><span>MD</span><span>GitHub Spec Kit</span>
@@ -5906,26 +5998,66 @@ specify integration catalog remove &lt;index&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-17" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-17" tabindex="0"><code>specify extension search [query]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-17" tabindex="0"><code>specify init my-project --integration claude --script ps</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-18" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-18" tabindex="0"><code>specify extension add &lt;name&gt;
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-18" tabindex="0"><code>specify init --here --integration claude</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-19" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-19" tabindex="0"><code>specify init --here --force --integration claude</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-20" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-20" tabindex="0"><code>specify integration install claude</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-21" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-21" tabindex="0"><code>specify integration switch claude</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-22" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-22" tabindex="0"><code>specify integration switch claude --refresh-shared-infra</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-23" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-23" tabindex="0"><code>specify integration use claude</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-24" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-24" tabindex="0"><code>specify integration uninstall codex</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-25" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-25" tabindex="0"><code>specify integration upgrade claude</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-26" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-26" tabindex="0"><code>specify integration status</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-27" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-27" tabindex="0"><code>specify extension search [query]</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-28" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-28" tabindex="0"><code>specify extension add &lt;name&gt;
 specify extension add &lt;name&gt; --version &lt;version&gt;
 specify extension add &lt;name&gt; --dev &lt;directorio&gt;
 specify extension add &lt;name&gt; --from &lt;url&gt;
 specify extension add &lt;name&gt; --priority &lt;N&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-19" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-19" tabindex="0"><code>specify extension add git
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-29" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-29" tabindex="0"><code>specify extension add git
 specify extension add bug
 specify extension add assess
 specify extension add github</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-20" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-20" tabindex="0"><code>specify extension list
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-30" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-30" tabindex="0"><code>specify extension list
 specify extension list --available
 specify extension list --all
 specify extension list --json
@@ -5940,14 +6072,14 @@ specify extension remove &lt;name&gt; --keep-config
 specify extension remove &lt;name&gt; --force</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-21" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-21" tabindex="0"><code>specify extension catalog list
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-31" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-31" tabindex="0"><code>specify extension catalog list
 specify extension catalog add &lt;url&gt; --name &lt;name&gt;
 specify extension catalog remove &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-22" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-22" tabindex="0"><code>specify preset search [query]
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-32" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-32" tabindex="0"><code>specify preset search [query]
 specify preset add [&lt;preset-id&gt;]
 specify preset add &lt;preset-id&gt; --dev &lt;directorio&gt;
 specify preset add &lt;preset-id&gt; --from &lt;url&gt;
@@ -5963,38 +6095,38 @@ specify preset disable &lt;preset-id&gt;
 specify preset set-priority &lt;preset-id&gt; &lt;priority&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-23" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-23" tabindex="0"><code>specify preset catalog list
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-33" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-33" tabindex="0"><code>specify preset catalog list
 specify preset catalog add &lt;url&gt; --name &lt;name&gt;
 specify preset catalog remove &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-24" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-24" tabindex="0"><code>specify artifact list --json
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-34" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-34" tabindex="0"><code>specify artifact list --json
 specify artifact info &lt;name&gt; --json
 specify artifact info &lt;name&gt; --json --kind command</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-25" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-25" tabindex="0"><code>specify workflow run &lt;source&gt;
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-35" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-35" tabindex="0"><code>specify workflow run &lt;source&gt;
 specify workflow run speckit -i spec=&quot;Build a kanban board&quot;
 specify workflow run &lt;archivo.yml&gt; --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-26" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-26" tabindex="0"><code>specify workflow resume &lt;run-id&gt;
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-36" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-36" tabindex="0"><code>specify workflow resume &lt;run-id&gt;
 specify workflow resume &lt;run-id&gt; --input &lt;clave&gt;=&lt;valor&gt;
 specify workflow resume &lt;run-id&gt; --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-27" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-27" tabindex="0"><code>specify workflow status [&lt;run-id&gt;]
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-37" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-37" tabindex="0"><code>specify workflow status [&lt;run-id&gt;]
 specify workflow status [&lt;run-id&gt;] --json
 specify workflow list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-28" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-28" tabindex="0"><code>specify workflow add &lt;source&gt;
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-38" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-38" tabindex="0"><code>specify workflow add &lt;source&gt;
 specify workflow add &lt;source&gt; --dev
 specify workflow add &lt;workflow-id&gt; --from &lt;url&gt;
 specify workflow add &lt;workflow-id&gt; --version &lt;version&gt;
@@ -6008,8 +6140,8 @@ specify workflow info &lt;workflow-id&gt; --versions
 specify workflow resolve &lt;workflow-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-29" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-29" tabindex="0"><code>specify workflow overlay add &lt;archivo-overlay.yml&gt; --priority &lt;N&gt;
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-39" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-39" tabindex="0"><code>specify workflow overlay add &lt;archivo-overlay.yml&gt; --priority &lt;N&gt;
 specify workflow overlay list &lt;workflow-id&gt;
 specify workflow overlay set-priority &lt;workflow-id&gt; &lt;overlay-id&gt; &lt;N&gt;
 specify workflow overlay enable &lt;workflow-id&gt; &lt;overlay-id&gt;
@@ -6017,14 +6149,14 @@ specify workflow overlay disable &lt;workflow-id&gt; &lt;overlay-id&gt;
 specify workflow overlay remove &lt;workflow-id&gt; &lt;overlay-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-30" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-30" tabindex="0"><code>specify workflow catalog list
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-40" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-40" tabindex="0"><code>specify workflow catalog list
 specify workflow catalog add &lt;url&gt; [--name &lt;name&gt;]
 specify workflow catalog remove &lt;index&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-31" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-31" tabindex="0"><code>specify workflow step list
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-41" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-41" tabindex="0"><code>specify workflow step list
 specify workflow step add &lt;id&gt;
 specify workflow step remove &lt;id&gt;
 specify workflow step search [query]
@@ -6034,16 +6166,16 @@ specify workflow step catalog add &lt;url&gt;
 specify workflow step catalog remove &lt;index&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-32" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-32" tabindex="0"><code>specify bundle search [query]
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-42" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-42" tabindex="0"><code>specify bundle search [query]
 specify bundle search [query] --offline
 specify bundle search [query] --json
 specify bundle info &lt;bundle-id&gt;
 specify bundle info &lt;bundle-id&gt; --offline --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-33" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-33" tabindex="0"><code>specify bundle install &lt;bundle-id | path&gt;
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-43" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-43" tabindex="0"><code>specify bundle install &lt;bundle-id | path&gt;
 specify bundle add &lt;bundle-id&gt;
 specify bundle install &lt;path&gt; --refresh
 specify bundle update [&lt;bundle-id&gt;]
@@ -6053,27 +6185,27 @@ specify bundle list
 specify bundle list --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-34" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-34" tabindex="0"><code>specify bundle init [&lt;bundle-id&gt;]
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-44" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-44" tabindex="0"><code>specify bundle init [&lt;bundle-id&gt;]
 specify bundle validate
 specify bundle validate --path &lt;directorio-o-bundle.yml&gt;
 specify bundle build
 specify bundle build --path &lt;directorio&gt; --output &lt;directorio-salida&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-35" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-35" tabindex="0"><code>specify bundle install bugfix
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-45" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-45" tabindex="0"><code>specify bundle install bugfix
 specify bundle add assess</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-36" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-36" tabindex="0"><code>specify bundle catalog list
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-46" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-46" tabindex="0"><code>specify bundle catalog list
 specify bundle catalog add &lt;url&gt; --policy install-allowed --priority &lt;N&gt;
 specify bundle catalog remove &lt;id-o-url&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-37" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-37" tabindex="0"><code>$speckit-constitution
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-47" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-47" tabindex="0"><code>$speckit-constitution
 $speckit-specify
 $speckit-clarify
 $speckit-plan
@@ -6084,93 +6216,93 @@ $speckit-implement
 $speckit-converge</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-38" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-38" tabindex="0"><code>$speckit-constitution Define principles focused on code quality, testing and maintainability.</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-39" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-39" tabindex="0"><code>$speckit-specify Build a photo organizer with albums grouped by date.</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-40" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-40" tabindex="0"><code>$speckit-clarify Focus on permissions, status changes and assignment rules.</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-41" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-41" tabindex="0"><code>$speckit-plan Use Vite, vanilla JavaScript and SQLite for local metadata.</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-42" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-42" tabindex="0"><code>$speckit-checklist
-$speckit-checklist Focus on authentication and authorization requirements.</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-43" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-43" tabindex="0"><code>$speckit-tasks</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-44" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-44" tabindex="0"><code>$speckit-analyze</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-45" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-45" tabindex="0"><code>$speckit-implement
-$speckit-implement Implement only the Setup and Foundational phases.</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-46" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-46" tabindex="0"><code>$speckit-converge</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-47" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-47" tabindex="0"><code>$speckit-taskstoissues</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-48" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-48" tabindex="0"><code>specify extension add github
-$speckit-github-taskstoissues</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-48" tabindex="0"><code>$speckit-constitution Define principles focused on code quality, testing and maintainability.</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-49" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-49" tabindex="0"><code>specify extension add bug</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-49" tabindex="0"><code>$speckit-specify Build a photo organizer with albums grouped by date.</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-50" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-50" tabindex="0"><code>$speckit-bug-assess &quot;Submitting an empty password crashes the login form.&quot; slug=login-crash
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-50" tabindex="0"><code>$speckit-clarify Focus on permissions, status changes and assignment rules.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-51" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-51" tabindex="0"><code>$speckit-plan Use Vite, vanilla JavaScript and SQLite for local metadata.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-52" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-52" tabindex="0"><code>$speckit-checklist
+$speckit-checklist Focus on authentication and authorization requirements.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-53" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-53" tabindex="0"><code>$speckit-tasks</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-54" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-54" tabindex="0"><code>$speckit-analyze</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-55" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-55" tabindex="0"><code>$speckit-implement
+$speckit-implement Implement only the Setup and Foundational phases.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-56" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-56" tabindex="0"><code>$speckit-converge</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-57" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-57" tabindex="0"><code>$speckit-taskstoissues</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-58" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-58" tabindex="0"><code>specify extension add github
+$speckit-github-taskstoissues</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-59" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-59" tabindex="0"><code>specify extension add bug</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-60" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-60" tabindex="0"><code>$speckit-bug-assess &quot;Submitting an empty password crashes the login form.&quot; slug=login-crash
 $speckit-bug-fix slug=login-crash
 $speckit-bug-test slug=login-crash</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-51" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-51" tabindex="0"><code>specify extension add assess</code></pre>
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-61" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-61" tabindex="0"><code>specify extension add assess</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-52" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-52" tabindex="0"><code>$speckit-assess-intake &quot;Let users work offline and sync when they reconnect.&quot; slug=offline-mode
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-62" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-62" tabindex="0"><code>$speckit-assess-intake &quot;Let users work offline and sync when they reconnect.&quot; slug=offline-mode
 $speckit-assess-research slug=offline-mode
 $speckit-assess-define slug=offline-mode
 $speckit-assess-shape slug=offline-mode
 $speckit-assess-decide slug=offline-mode</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-53" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-53" tabindex="0"><code>specify extension add git</code></pre>
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-63" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-63" tabindex="0"><code>specify extension add git</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-54" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-54" tabindex="0"><code>$speckit-git-initialize
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-64" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-64" tabindex="0"><code>$speckit-git-initialize
 $speckit-git-feature
 $speckit-git-validate
 $speckit-git-remote
 $speckit-git-commit</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-55" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-55" tabindex="0"><code>.specify/extensions/git/git-config.yml</code></pre>
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-65" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-65" tabindex="0"><code>.specify/extensions/git/git-config.yml</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-56" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-56" tabindex="0"><code>uv tool install specify-cli
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-66" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-66" tabindex="0"><code>uv tool install specify-cli
 specify init mi-proyecto --integration codex --script ps
 cd mi-proyecto
 specify extension add git
@@ -6186,677 +6318,741 @@ $speckit-implement
 $speckit-converge</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-57" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-57" tabindex="0"><code>$speckit-implement
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-67" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-67" tabindex="0"><code>$speckit-implement
 $speckit-converge</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-58" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-58" tabindex="0"><code>specify --version</code></pre>
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-68" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-68" tabindex="0"><code>uv tool install specify-cli
+specify init mi-proyecto --integration claude --script ps
+cd mi-proyecto
+specify extension add git</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-59" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-59" tabindex="0"><code>specify -V</code></pre>
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-69" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-69" tabindex="0"><code>/speckit-constitution Define principles for quality, testing and maintainability.
+/speckit-specify Describe the feature and its user stories.
+/speckit-clarify Resolve the ambiguous requirements.
+/speckit-plan Choose the architecture and technology.
+/speckit-checklist
+/speckit-tasks
+/speckit-analyze
+/speckit-implement
+/speckit-converge</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-60" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-60" tabindex="0"><code>specify version</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-61" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-61" tabindex="0"><code>specify version --features</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-62" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-62" tabindex="0"><code>specify version --features --json</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-63" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-63" tabindex="0"><code>specify init my-project --integration codex</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-64" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-64" tabindex="0"><code>specify init --here --integration codex</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-65" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-65" tabindex="0"><code>specify init --here --force --integration codex</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-66" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-66" tabindex="0"><code>specify init my-project --integration codex --script ps</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-67" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-67" tabindex="0"><code>specify init my-project --integration codex --ignore-agent-tools</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-68" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-68" tabindex="0"><code>specify init my-project --integration codex --non-interactive</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-69" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-69" tabindex="0"><code>specify init my-project --integration codex --preset &lt;preset-id&gt;</code></pre>
-            </div>
-            <div class="snippet-card" data-snippet data-kind="command">
-              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-70" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-70" tabindex="0"><code>specify init my-project --integration generic --integration-options=&quot;--commands-dir .myagent/cmds&quot;</code></pre>
+              <div class="snippet-head"><span>Comando · Bloque de comandos</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-70" aria-label="Copiar Bloque de comandos de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-70" tabindex="0"><code>/speckit-implement
+/speckit-converge</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-71" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-71" tabindex="0"><code>specify self upgrade</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-71" tabindex="0"><code>specify --version</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-72" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-72" tabindex="0"><code>specify self upgrade --dry-run</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-72" tabindex="0"><code>specify -V</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-73" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-73" tabindex="0"><code>specify self upgrade --tag vX.Y.Z</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-73" tabindex="0"><code>specify version</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-74" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-74" tabindex="0"><code>specify integration status</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-74" tabindex="0"><code>specify version --features</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-75" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-75" tabindex="0"><code>specify integration upgrade &lt;key&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-75" tabindex="0"><code>specify version --features --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-76" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-76" tabindex="0"><code>specify extension update</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-76" tabindex="0"><code>specify init my-project --integration codex</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-77" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-77" tabindex="0"><code>specify integration list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-77" tabindex="0"><code>specify init --here --integration codex</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-78" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-78" tabindex="0"><code>specify integration list --catalog</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-78" tabindex="0"><code>specify init --here --force --integration codex</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-79" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-79" tabindex="0"><code>specify integration search [query]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-79" tabindex="0"><code>specify init my-project --integration codex --script ps</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-80" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-80" tabindex="0"><code>specify integration info &lt;integration-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-80" tabindex="0"><code>specify init my-project --integration codex --ignore-agent-tools</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-81" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-81" tabindex="0"><code>specify integration install &lt;key&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-81" tabindex="0"><code>specify init my-project --integration codex --non-interactive</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-82" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-82" tabindex="0"><code>specify integration uninstall [&lt;key&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-82" tabindex="0"><code>specify init my-project --integration codex --preset &lt;preset-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-83" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-83" tabindex="0"><code>specify integration switch &lt;key&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-83" tabindex="0"><code>specify init my-project --integration generic --integration-options=&quot;--commands-dir .myagent/cmds&quot;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-84" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-84" tabindex="0"><code>specify integration use &lt;key&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-84" tabindex="0"><code>specify self upgrade</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-85" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-85" tabindex="0"><code>specify integration upgrade [&lt;key&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-85" tabindex="0"><code>specify self upgrade --dry-run</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-86" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-86" tabindex="0"><code>specify integration status --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-86" tabindex="0"><code>specify self upgrade --tag vX.Y.Z</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-87" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-87" tabindex="0"><code>specify integration install generic --integration-options=&quot;--commands-dir .myagent/cmds&quot;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-87" tabindex="0"><code>specify integration upgrade &lt;key&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-88" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-88" tabindex="0"><code>specify integration install generic --integration-options=&quot;--commands-dir .myagent/skills --skills&quot;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-88" tabindex="0"><code>specify extension update</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-89" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-89" tabindex="0"><code>specify integration install &lt;key&gt; --force</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-89" tabindex="0"><code>specify integration list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-90" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-90" tabindex="0"><code>specify integration switch &lt;key&gt; --refresh-shared-infra</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-90" tabindex="0"><code>specify integration list --catalog</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-91" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-91" tabindex="0"><code>specify integration scaffold &lt;key&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-91" tabindex="0"><code>specify integration search [query]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-92" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-92" tabindex="0"><code>specify integration catalog list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-92" tabindex="0"><code>specify integration info &lt;integration-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-93" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-93" tabindex="0"><code>specify integration catalog add &lt;url&gt; [--name &lt;nombre&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-93" tabindex="0"><code>specify integration install &lt;key&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-94" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-94" tabindex="0"><code>specify integration catalog remove &lt;index&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-94" tabindex="0"><code>specify integration uninstall [&lt;key&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-95" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-95" tabindex="0"><code>specify extension add &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-95" tabindex="0"><code>specify integration switch &lt;key&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-96" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-96" tabindex="0"><code>specify extension add &lt;name&gt; --version &lt;version&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-96" tabindex="0"><code>specify integration use &lt;key&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-97" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-97" tabindex="0"><code>specify extension add &lt;name&gt; --dev &lt;directorio&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-97" tabindex="0"><code>specify integration upgrade [&lt;key&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-98" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-98" tabindex="0"><code>specify extension add &lt;name&gt; --from &lt;url&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-98" tabindex="0"><code>specify integration status --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-99" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-99" tabindex="0"><code>specify extension add &lt;name&gt; --priority &lt;N&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-99" tabindex="0"><code>specify integration install generic --integration-options=&quot;--commands-dir .myagent/cmds&quot;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-100" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-100" tabindex="0"><code>specify extension add github</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-100" tabindex="0"><code>specify integration install generic --integration-options=&quot;--commands-dir .myagent/skills --skills&quot;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-101" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-101" tabindex="0"><code>specify extension list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-101" tabindex="0"><code>specify integration install &lt;key&gt; --force</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-102" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-102" tabindex="0"><code>specify extension list --available</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-102" tabindex="0"><code>specify integration switch &lt;key&gt; --refresh-shared-infra</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-103" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-103" tabindex="0"><code>specify extension list --all</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-103" tabindex="0"><code>specify integration scaffold &lt;key&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-104" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-104" tabindex="0"><code>specify extension list --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-104" tabindex="0"><code>specify integration catalog list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-105" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-105" tabindex="0"><code>specify extension info &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-105" tabindex="0"><code>specify integration catalog add &lt;url&gt; [--name &lt;nombre&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-106" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-106" tabindex="0"><code>specify extension info &lt;name&gt; --versions</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-106" tabindex="0"><code>specify integration catalog remove &lt;index&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-107" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-107" tabindex="0"><code>specify extension update [&lt;name&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-107" tabindex="0"><code>/speckit-, por ejemplo /speckit-specify en lugar de $speckit-specify. Al</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-108" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-108" tabindex="0"><code>specify extension enable &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-108" tabindex="0"><code>specify extension add &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-109" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-109" tabindex="0"><code>specify extension disable &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-109" tabindex="0"><code>specify extension add &lt;name&gt; --version &lt;version&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-110" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-110" tabindex="0"><code>specify extension set-priority &lt;name&gt; &lt;priority&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-110" tabindex="0"><code>specify extension add &lt;name&gt; --dev &lt;directorio&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-111" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-111" tabindex="0"><code>specify extension remove &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-111" tabindex="0"><code>specify extension add &lt;name&gt; --from &lt;url&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-112" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-112" tabindex="0"><code>specify extension remove &lt;name&gt; --keep-config</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-112" tabindex="0"><code>specify extension add &lt;name&gt; --priority &lt;N&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-113" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-113" tabindex="0"><code>specify extension remove &lt;name&gt; --force</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-113" tabindex="0"><code>specify extension add github</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-114" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-114" tabindex="0"><code>specify extension catalog list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-114" tabindex="0"><code>specify extension list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-115" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-115" tabindex="0"><code>specify extension catalog add &lt;url&gt; --name &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-115" tabindex="0"><code>specify extension list --available</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-116" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-116" tabindex="0"><code>specify extension catalog remove &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-116" tabindex="0"><code>specify extension list --all</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-117" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-117" tabindex="0"><code>specify preset search [query]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-117" tabindex="0"><code>specify extension list --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-118" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-118" tabindex="0"><code>specify preset add [&lt;preset-id&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-118" tabindex="0"><code>specify extension info &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-119" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-119" tabindex="0"><code>specify preset add &lt;preset-id&gt; --dev &lt;directorio&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-119" tabindex="0"><code>specify extension info &lt;name&gt; --versions</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-120" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-120" tabindex="0"><code>specify preset add &lt;preset-id&gt; --from &lt;url&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-120" tabindex="0"><code>specify extension update [&lt;name&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-121" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-121" tabindex="0"><code>specify preset add &lt;preset-id&gt; --priority &lt;N&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-121" tabindex="0"><code>specify extension enable &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-122" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-122" tabindex="0"><code>specify preset update &lt;preset-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-122" tabindex="0"><code>specify extension disable &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-123" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-123" tabindex="0"><code>specify preset remove &lt;preset-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-123" tabindex="0"><code>specify extension set-priority &lt;name&gt; &lt;priority&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-124" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-124" tabindex="0"><code>specify preset list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-124" tabindex="0"><code>specify extension remove &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-125" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-125" tabindex="0"><code>specify preset list --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-125" tabindex="0"><code>specify extension remove &lt;name&gt; --keep-config</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-126" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-126" tabindex="0"><code>specify preset info &lt;preset-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-126" tabindex="0"><code>specify extension remove &lt;name&gt; --force</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-127" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-127" tabindex="0"><code>specify preset resolve &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-127" tabindex="0"><code>specify extension catalog list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-128" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-128" tabindex="0"><code>specify preset enable &lt;preset-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-128" tabindex="0"><code>specify extension catalog add &lt;url&gt; --name &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-129" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-129" tabindex="0"><code>specify preset disable &lt;preset-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-129" tabindex="0"><code>specify extension catalog remove &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-130" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-130" tabindex="0"><code>specify preset set-priority &lt;preset-id&gt; &lt;priority&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-130" tabindex="0"><code>specify preset search [query]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-131" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-131" tabindex="0"><code>specify preset catalog list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-131" tabindex="0"><code>specify preset add [&lt;preset-id&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-132" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-132" tabindex="0"><code>specify preset catalog add &lt;url&gt; --name &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-132" tabindex="0"><code>specify preset add &lt;preset-id&gt; --dev &lt;directorio&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-133" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-133" tabindex="0"><code>specify preset catalog remove &lt;name&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-133" tabindex="0"><code>specify preset add &lt;preset-id&gt; --from &lt;url&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-134" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-134" tabindex="0"><code>specify artifact list --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-134" tabindex="0"><code>specify preset add &lt;preset-id&gt; --priority &lt;N&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-135" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-135" tabindex="0"><code>specify artifact info &lt;name&gt; --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-135" tabindex="0"><code>specify preset update &lt;preset-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-136" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-136" tabindex="0"><code>specify artifact info &lt;name&gt; --json --kind command</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-136" tabindex="0"><code>specify preset remove &lt;preset-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-137" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-137" tabindex="0"><code>specify workflow run &lt;source&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-137" tabindex="0"><code>specify preset list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-138" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-138" tabindex="0"><code>specify workflow run speckit -i spec=&quot;Build a kanban board&quot;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-138" tabindex="0"><code>specify preset list --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-139" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-139" tabindex="0"><code>specify workflow run &lt;archivo.yml&gt; --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-139" tabindex="0"><code>specify preset info &lt;preset-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-140" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-140" tabindex="0"><code>specify workflow resume &lt;run-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-140" tabindex="0"><code>specify preset resolve &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-141" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-141" tabindex="0"><code>specify workflow resume &lt;run-id&gt; --input &lt;clave&gt;=&lt;valor&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-141" tabindex="0"><code>specify preset enable &lt;preset-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-142" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-142" tabindex="0"><code>specify workflow resume &lt;run-id&gt; --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-142" tabindex="0"><code>specify preset disable &lt;preset-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-143" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-143" tabindex="0"><code>specify workflow status [&lt;run-id&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-143" tabindex="0"><code>specify preset set-priority &lt;preset-id&gt; &lt;priority&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-144" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-144" tabindex="0"><code>specify workflow status [&lt;run-id&gt;] --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-144" tabindex="0"><code>specify preset catalog list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-145" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-145" tabindex="0"><code>specify workflow list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-145" tabindex="0"><code>specify preset catalog add &lt;url&gt; --name &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-146" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-146" tabindex="0"><code>specify workflow add &lt;source&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-146" tabindex="0"><code>specify preset catalog remove &lt;name&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-147" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-147" tabindex="0"><code>specify workflow add &lt;source&gt; --dev</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-147" tabindex="0"><code>specify artifact list --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-148" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-148" tabindex="0"><code>specify workflow add &lt;workflow-id&gt; --from &lt;url&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-148" tabindex="0"><code>specify artifact info &lt;name&gt; --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-149" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-149" tabindex="0"><code>specify workflow add &lt;workflow-id&gt; --version &lt;version&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-149" tabindex="0"><code>specify artifact info &lt;name&gt; --json --kind command</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-150" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-150" tabindex="0"><code>specify workflow update [&lt;workflow-id&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-150" tabindex="0"><code>specify workflow run &lt;source&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-151" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-151" tabindex="0"><code>specify workflow enable &lt;workflow-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-151" tabindex="0"><code>specify workflow run speckit -i spec=&quot;Build a kanban board&quot;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-152" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-152" tabindex="0"><code>specify workflow disable &lt;workflow-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-152" tabindex="0"><code>specify workflow run &lt;archivo.yml&gt; --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-153" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-153" tabindex="0"><code>specify workflow remove &lt;workflow-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-153" tabindex="0"><code>specify workflow resume &lt;run-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-154" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-154" tabindex="0"><code>specify workflow search [query]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-154" tabindex="0"><code>specify workflow resume &lt;run-id&gt; --input &lt;clave&gt;=&lt;valor&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-155" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-155" tabindex="0"><code>specify workflow info &lt;workflow-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-155" tabindex="0"><code>specify workflow resume &lt;run-id&gt; --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-156" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-156" tabindex="0"><code>specify workflow info &lt;workflow-id&gt; --versions</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-156" tabindex="0"><code>specify workflow status [&lt;run-id&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-157" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-157" tabindex="0"><code>specify workflow resolve &lt;workflow-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-157" tabindex="0"><code>specify workflow status [&lt;run-id&gt;] --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-158" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-158" tabindex="0"><code>specify workflow overlay add &lt;archivo-overlay.yml&gt; --priority &lt;N&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-158" tabindex="0"><code>specify workflow list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-159" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-159" tabindex="0"><code>specify workflow overlay list &lt;workflow-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-159" tabindex="0"><code>specify workflow add &lt;source&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-160" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-160" tabindex="0"><code>specify workflow overlay set-priority &lt;workflow-id&gt; &lt;overlay-id&gt; &lt;N&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-160" tabindex="0"><code>specify workflow add &lt;source&gt; --dev</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-161" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-161" tabindex="0"><code>specify workflow overlay enable &lt;workflow-id&gt; &lt;overlay-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-161" tabindex="0"><code>specify workflow add &lt;workflow-id&gt; --from &lt;url&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-162" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-162" tabindex="0"><code>specify workflow overlay disable &lt;workflow-id&gt; &lt;overlay-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-162" tabindex="0"><code>specify workflow add &lt;workflow-id&gt; --version &lt;version&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-163" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-163" tabindex="0"><code>specify workflow overlay remove &lt;workflow-id&gt; &lt;overlay-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-163" tabindex="0"><code>specify workflow update [&lt;workflow-id&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-164" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-164" tabindex="0"><code>specify workflow catalog list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-164" tabindex="0"><code>specify workflow enable &lt;workflow-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-165" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-165" tabindex="0"><code>specify workflow catalog add &lt;url&gt; [--name &lt;name&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-165" tabindex="0"><code>specify workflow disable &lt;workflow-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-166" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-166" tabindex="0"><code>specify workflow catalog remove &lt;index&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-166" tabindex="0"><code>specify workflow remove &lt;workflow-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-167" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-167" tabindex="0"><code>specify workflow step list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-167" tabindex="0"><code>specify workflow search [query]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-168" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-168" tabindex="0"><code>specify workflow step add &lt;id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-168" tabindex="0"><code>specify workflow info &lt;workflow-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-169" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-169" tabindex="0"><code>specify workflow step remove &lt;id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-169" tabindex="0"><code>specify workflow info &lt;workflow-id&gt; --versions</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-170" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-170" tabindex="0"><code>specify workflow step search [query]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-170" tabindex="0"><code>specify workflow resolve &lt;workflow-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-171" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-171" tabindex="0"><code>specify workflow step info &lt;id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-171" tabindex="0"><code>specify workflow overlay add &lt;archivo-overlay.yml&gt; --priority &lt;N&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-172" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-172" tabindex="0"><code>specify workflow step catalog list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-172" tabindex="0"><code>specify workflow overlay list &lt;workflow-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-173" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-173" tabindex="0"><code>specify workflow step catalog add &lt;url&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-173" tabindex="0"><code>specify workflow overlay set-priority &lt;workflow-id&gt; &lt;overlay-id&gt; &lt;N&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-174" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-174" tabindex="0"><code>specify workflow step catalog remove &lt;index&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-174" tabindex="0"><code>specify workflow overlay enable &lt;workflow-id&gt; &lt;overlay-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-175" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-175" tabindex="0"><code>specify bundle search [query]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-175" tabindex="0"><code>specify workflow overlay disable &lt;workflow-id&gt; &lt;overlay-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-176" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-176" tabindex="0"><code>specify bundle search [query] --offline</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-176" tabindex="0"><code>specify workflow overlay remove &lt;workflow-id&gt; &lt;overlay-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-177" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-177" tabindex="0"><code>specify bundle search [query] --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-177" tabindex="0"><code>specify workflow catalog list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-178" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-178" tabindex="0"><code>specify bundle info &lt;bundle-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-178" tabindex="0"><code>specify workflow catalog add &lt;url&gt; [--name &lt;name&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-179" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-179" tabindex="0"><code>specify bundle info &lt;bundle-id&gt; --offline --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-179" tabindex="0"><code>specify workflow catalog remove &lt;index&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-180" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-180" tabindex="0"><code>specify bundle install &lt;bundle-id | path&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-180" tabindex="0"><code>specify workflow step list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-181" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-181" tabindex="0"><code>specify bundle add &lt;bundle-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-181" tabindex="0"><code>specify workflow step add &lt;id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-182" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-182" tabindex="0"><code>specify bundle install &lt;path&gt; --refresh</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-182" tabindex="0"><code>specify workflow step remove &lt;id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-183" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-183" tabindex="0"><code>specify bundle update [&lt;bundle-id&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-183" tabindex="0"><code>specify workflow step search [query]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-184" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-184" tabindex="0"><code>specify bundle update --all</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-184" tabindex="0"><code>specify workflow step info &lt;id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-185" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-185" tabindex="0"><code>specify bundle remove &lt;bundle-id&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-185" tabindex="0"><code>specify workflow step catalog list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-186" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-186" tabindex="0"><code>specify bundle list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-186" tabindex="0"><code>specify workflow step catalog add &lt;url&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-187" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-187" tabindex="0"><code>specify bundle list --json</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-187" tabindex="0"><code>specify workflow step catalog remove &lt;index&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-188" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-188" tabindex="0"><code>specify bundle init [&lt;bundle-id&gt;]</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-188" tabindex="0"><code>specify bundle search [query]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-189" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-189" tabindex="0"><code>specify bundle validate</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-189" tabindex="0"><code>specify bundle search [query] --offline</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-190" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-190" tabindex="0"><code>specify bundle validate --path &lt;directorio-o-bundle.yml&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-190" tabindex="0"><code>specify bundle search [query] --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-191" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-191" tabindex="0"><code>specify bundle build</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-191" tabindex="0"><code>specify bundle info &lt;bundle-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-192" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-192" tabindex="0"><code>specify bundle build --path &lt;directorio&gt; --output &lt;directorio-salida&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-192" tabindex="0"><code>specify bundle info &lt;bundle-id&gt; --offline --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-193" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-193" tabindex="0"><code>specify bundle install bugfix</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-193" tabindex="0"><code>specify bundle install &lt;bundle-id | path&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-194" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-194" tabindex="0"><code>specify bundle add assess</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-194" tabindex="0"><code>specify bundle add &lt;bundle-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-195" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-195" tabindex="0"><code>specify bundle catalog list</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-195" tabindex="0"><code>specify bundle install &lt;path&gt; --refresh</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-196" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-196" tabindex="0"><code>specify bundle catalog add &lt;url&gt; --policy install-allowed --priority &lt;N&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-196" tabindex="0"><code>specify bundle update [&lt;bundle-id&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-197" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-197" tabindex="0"><code>specify bundle catalog remove &lt;id-o-url&gt;</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-197" tabindex="0"><code>specify bundle update --all</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-198" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-198" tabindex="0"><code>$speckit-constitution</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-198" tabindex="0"><code>specify bundle remove &lt;bundle-id&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-199" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-199" tabindex="0"><code>$speckit-specify</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-199" tabindex="0"><code>specify bundle list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-200" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-200" tabindex="0"><code>$speckit-clarify</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-200" tabindex="0"><code>specify bundle list --json</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-201" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-201" tabindex="0"><code>$speckit-plan</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-201" tabindex="0"><code>specify bundle init [&lt;bundle-id&gt;]</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-202" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-202" tabindex="0"><code>$speckit-checklist</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-202" tabindex="0"><code>specify bundle validate</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-203" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-203" tabindex="0"><code>$speckit-implement</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-203" tabindex="0"><code>specify bundle validate --path &lt;directorio-o-bundle.yml&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-204" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-204" tabindex="0"><code>$speckit-checklist Focus on authentication and authorization requirements.</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-204" tabindex="0"><code>specify bundle build</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-205" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-205" tabindex="0"><code>$speckit-implement Implement only the Setup and Foundational phases.</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-205" tabindex="0"><code>specify bundle build --path &lt;directorio&gt; --output &lt;directorio-salida&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-206" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-206" tabindex="0"><code>$speckit-github-taskstoissues</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-206" tabindex="0"><code>specify bundle install bugfix</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-207" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-207" tabindex="0"><code>$speckit-bug-assess &quot;Submitting an empty password crashes the login form.&quot; slug=login-crash</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-207" tabindex="0"><code>specify bundle add assess</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-208" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-208" tabindex="0"><code>$speckit-bug-fix slug=login-crash</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-208" tabindex="0"><code>specify bundle catalog list</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-209" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-209" tabindex="0"><code>$speckit-bug-test slug=login-crash</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-209" tabindex="0"><code>specify bundle catalog add &lt;url&gt; --policy install-allowed --priority &lt;N&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-210" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-210" tabindex="0"><code>$speckit-assess-intake &quot;Let users work offline and sync when they reconnect.&quot; slug=offline-mode</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-210" tabindex="0"><code>specify bundle catalog remove &lt;id-o-url&gt;</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-211" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-211" tabindex="0"><code>$speckit-assess-research slug=offline-mode</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-211" tabindex="0"><code>$speckit-constitution</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-212" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-212" tabindex="0"><code>$speckit-assess-define slug=offline-mode</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-212" tabindex="0"><code>$speckit-specify</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-213" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-213" tabindex="0"><code>$speckit-assess-shape slug=offline-mode</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-213" tabindex="0"><code>$speckit-clarify</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-214" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-214" tabindex="0"><code>$speckit-assess-decide slug=offline-mode</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-214" tabindex="0"><code>$speckit-plan</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-215" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-215" tabindex="0"><code>$speckit-git-initialize</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-215" tabindex="0"><code>$speckit-checklist</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-216" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-216" tabindex="0"><code>$speckit-git-feature</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-216" tabindex="0"><code>$speckit-implement</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-217" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-217" tabindex="0"><code>$speckit-git-validate</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-217" tabindex="0"><code>$speckit-checklist Focus on authentication and authorization requirements.</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-218" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-218" tabindex="0"><code>$speckit-git-remote</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-218" tabindex="0"><code>$speckit-implement Implement only the Setup and Foundational phases.</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-219" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-219" tabindex="0"><code>$speckit-git-commit</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-219" tabindex="0"><code>$speckit-github-taskstoissues</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-220" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-220" tabindex="0"><code>specify init mi-proyecto --integration codex --script ps</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-220" tabindex="0"><code>$speckit-bug-assess &quot;Submitting an empty password crashes the login form.&quot; slug=login-crash</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-221" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-221" tabindex="0"><code>$speckit-constitution Define principles for quality, testing and maintainability.</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-221" tabindex="0"><code>$speckit-bug-fix slug=login-crash</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-222" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-222" tabindex="0"><code>$speckit-specify Describe the feature and its user stories.</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-222" tabindex="0"><code>$speckit-bug-test slug=login-crash</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-223" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-223" tabindex="0"><code>$speckit-clarify Resolve the ambiguous requirements.</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-223" tabindex="0"><code>$speckit-assess-intake &quot;Let users work offline and sync when they reconnect.&quot; slug=offline-mode</code></pre>
             </div>
             <div class="snippet-card" data-snippet data-kind="command">
               <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-224" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
-              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-224" tabindex="0"><code>$speckit-plan Choose the architecture and technology.</code></pre>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-224" tabindex="0"><code>$speckit-assess-research slug=offline-mode</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-225" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-225" tabindex="0"><code>$speckit-assess-define slug=offline-mode</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-226" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-226" tabindex="0"><code>$speckit-assess-shape slug=offline-mode</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-227" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-227" tabindex="0"><code>$speckit-assess-decide slug=offline-mode</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-228" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-228" tabindex="0"><code>$speckit-git-initialize</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-229" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-229" tabindex="0"><code>$speckit-git-feature</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-230" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-230" tabindex="0"><code>$speckit-git-validate</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-231" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-231" tabindex="0"><code>$speckit-git-remote</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-232" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-232" tabindex="0"><code>$speckit-git-commit</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-233" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-233" tabindex="0"><code>specify init mi-proyecto --integration codex --script ps</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-234" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-234" tabindex="0"><code>$speckit-constitution Define principles for quality, testing and maintainability.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-235" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-235" tabindex="0"><code>$speckit-specify Describe the feature and its user stories.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-236" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-236" tabindex="0"><code>$speckit-clarify Resolve the ambiguous requirements.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-237" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-237" tabindex="0"><code>$speckit-plan Choose the architecture and technology.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-238" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-238" tabindex="0"><code>specify init mi-proyecto --integration claude --script ps</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-239" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-239" tabindex="0"><code>/speckit-constitution Define principles for quality, testing and maintainability.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-240" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-240" tabindex="0"><code>/speckit-specify Describe the feature and its user stories.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-241" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-241" tabindex="0"><code>/speckit-clarify Resolve the ambiguous requirements.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-242" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-242" tabindex="0"><code>/speckit-plan Choose the architecture and technology.</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-243" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-243" tabindex="0"><code>/speckit-checklist</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-244" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-244" tabindex="0"><code>/speckit-tasks</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-245" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-245" tabindex="0"><code>/speckit-analyze</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-246" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-246" tabindex="0"><code>/speckit-implement</code></pre>
+            </div>
+            <div class="snippet-card" data-snippet data-kind="command">
+              <div class="snippet-head"><span>Comando · Comando</span><button type="button" data-copy-target="doc-github-spec-kit-github-spec-kit-md-snippet-247" aria-label="Copiar Comando de Referencia completa de GitHub Spec Kit">Copiar</button></div>
+              <pre id="doc-github-spec-kit-github-spec-kit-md-snippet-247" tabindex="0"><code>/speckit-converge</code></pre>
             </div>
           </div>
           <details class="source-details">
@@ -7054,6 +7250,60 @@ Cat&#225;logos de integraciones:
 Permiten consultar, agregar o quitar fuentes de descubrimiento de
 integraciones.
 
+### Usar Claude Code como integraci&#243;n
+
+La clave de la integraci&#243;n es claude. Cada bloque siguiente es independiente y
+se puede copiar por separado. Ejecutarlos dentro de la carpeta del proyecto.
+
+Proyecto nuevo con Claude:
+
+    specify init my-project --integration claude --script ps
+
+Inicializar la carpeta actual con Claude:
+
+    specify init --here --integration claude
+
+Inicializar la carpeta actual con Claude sobre archivos existentes:
+
+    specify init --here --force --integration claude
+
+Instalar Claude junto a la integraci&#243;n que ya existe:
+
+    specify integration install claude
+
+Cambiar la integraci&#243;n existente (por ejemplo codex) por Claude:
+
+    specify integration switch claude
+
+Cambiar a Claude y refrescar tambi&#233;n la infraestructura compartida:
+
+    specify integration switch claude --refresh-shared-infra
+
+Seleccionar Claude como predeterminada si ya est&#225; instalada:
+
+    specify integration use claude
+
+Quitar la integraci&#243;n anterior despu&#233;s de cambiar a Claude:
+
+    specify integration uninstall codex
+
+Actualizar los archivos y comandos de Claude tras actualizar el CLI:
+
+    specify integration upgrade claude
+
+Comprobar el estado de las integraciones instaladas:
+
+    specify integration status
+
+Comprobar que el ejecutable de Claude Code est&#225; disponible:
+
+    specify check
+
+Con Claude, las habilidades se invocan en el chat de Claude Code con el prefijo
+/speckit-, por ejemplo /speckit-specify en lugar de $speckit-specify. Al
+cambiar de Codex a Claude, sustituir $speckit- por /speckit- en los ejemplos
+de las secciones siguientes.
+
 ## 6. Extensiones
 
 Las extensiones agregan comandos, plantillas, scripts, hooks o procesos
@@ -7528,6 +7778,32 @@ Si converge agrega tareas, repetir:
 
     $speckit-implement
     $speckit-converge
+
+### Variante para Claude Code
+
+Preparaci&#243;n del proyecto:
+
+    uv tool install specify-cli
+    specify init mi-proyecto --integration claude --script ps
+    cd mi-proyecto
+    specify extension add git
+
+Flujo en el chat de Claude Code:
+
+    /speckit-constitution Define principles for quality, testing and maintainability.
+    /speckit-specify Describe the feature and its user stories.
+    /speckit-clarify Resolve the ambiguous requirements.
+    /speckit-plan Choose the architecture and technology.
+    /speckit-checklist
+    /speckit-tasks
+    /speckit-analyze
+    /speckit-implement
+    /speckit-converge
+
+Si converge agrega tareas, repetir:
+
+    /speckit-implement
+    /speckit-converge
 
 ## 16. Fuentes oficiales
 

@@ -191,6 +191,60 @@ Catálogos de integraciones:
 Permiten consultar, agregar o quitar fuentes de descubrimiento de
 integraciones.
 
+### Usar Claude Code como integración
+
+La clave de la integración es claude. Cada bloque siguiente es independiente y
+se puede copiar por separado. Ejecutarlos dentro de la carpeta del proyecto.
+
+Proyecto nuevo con Claude:
+
+    specify init my-project --integration claude --script ps
+
+Inicializar la carpeta actual con Claude:
+
+    specify init --here --integration claude
+
+Inicializar la carpeta actual con Claude sobre archivos existentes:
+
+    specify init --here --force --integration claude
+
+Instalar Claude junto a la integración que ya existe:
+
+    specify integration install claude
+
+Cambiar la integración existente (por ejemplo codex) por Claude:
+
+    specify integration switch claude
+
+Cambiar a Claude y refrescar también la infraestructura compartida:
+
+    specify integration switch claude --refresh-shared-infra
+
+Seleccionar Claude como predeterminada si ya está instalada:
+
+    specify integration use claude
+
+Quitar la integración anterior después de cambiar a Claude:
+
+    specify integration uninstall codex
+
+Actualizar los archivos y comandos de Claude tras actualizar el CLI:
+
+    specify integration upgrade claude
+
+Comprobar el estado de las integraciones instaladas:
+
+    specify integration status
+
+Comprobar que el ejecutable de Claude Code está disponible:
+
+    specify check
+
+Con Claude, las habilidades se invocan en el chat de Claude Code con el prefijo
+/speckit-, por ejemplo /speckit-specify en lugar de $speckit-specify. Al
+cambiar de Codex a Claude, sustituir $speckit- por /speckit- en los ejemplos
+de las secciones siguientes.
+
 ## 6. Extensiones
 
 Las extensiones agregan comandos, plantillas, scripts, hooks o procesos
@@ -665,6 +719,32 @@ Si converge agrega tareas, repetir:
 
     $speckit-implement
     $speckit-converge
+
+### Variante para Claude Code
+
+Preparación del proyecto:
+
+    uv tool install specify-cli
+    specify init mi-proyecto --integration claude --script ps
+    cd mi-proyecto
+    specify extension add git
+
+Flujo en el chat de Claude Code:
+
+    /speckit-constitution Define principles for quality, testing and maintainability.
+    /speckit-specify Describe the feature and its user stories.
+    /speckit-clarify Resolve the ambiguous requirements.
+    /speckit-plan Choose the architecture and technology.
+    /speckit-checklist
+    /speckit-tasks
+    /speckit-analyze
+    /speckit-implement
+    /speckit-converge
+
+Si converge agrega tareas, repetir:
+
+    /speckit-implement
+    /speckit-converge
 
 ## 16. Fuentes oficiales
 
