@@ -194,56 +194,65 @@ integraciones.
 ### Usar Claude Code como integración
 
 La clave de la integración es claude. Cada bloque siguiente es independiente y
-se puede copiar por separado. Ejecutarlos dentro de la carpeta del proyecto.
-
-Proyecto nuevo con Claude:
+se puede copiar por separado; la explicación de cada uno aparece debajo.
+Ejecutarlos dentro de la carpeta del proyecto.
 
     specify init my-project --integration claude --script ps
 
-Inicializar la carpeta actual con Claude:
+Crea un proyecto nuevo en la carpeta my-project, con Claude como agente y
+scripts PowerShell.
 
     specify init --here --integration claude
 
-Inicializar la carpeta actual con Claude sobre archivos existentes:
+Inicializa Spec Kit en la carpeta actual con Claude como agente.
 
     specify init --here --force --integration claude
 
-Instalar Claude junto a la integración que ya existe:
+Inicializa la carpeta actual con Claude aunque ya contenga archivos; --force
+combina la infraestructura de Spec Kit con lo existente sin pedir confirmación.
 
     specify integration install claude
 
-Cambiar la integración existente (por ejemplo codex) por Claude:
+Instala Claude como integración adicional, sin quitar la que ya existe (por
+ejemplo codex).
 
     specify integration switch claude
 
-Cambiar a Claude y refrescar también la infraestructura compartida:
+Cambia la integración existente por Claude, instalándola si hace falta.
 
     specify integration switch claude --refresh-shared-infra
 
-Seleccionar Claude como predeterminada si ya está instalada:
+Cambia a Claude y refresca también la infraestructura compartida (scripts y
+plantillas de .specify/).
 
     specify integration use claude
 
-Quitar la integración anterior después de cambiar a Claude:
+Selecciona Claude como integración predeterminada cuando ya está instalada.
 
     specify integration uninstall codex
 
-Actualizar los archivos y comandos de Claude tras actualizar el CLI:
+Elimina la integración anterior (aquí codex) una vez que Claude funciona;
+--force también borra los archivos que se hayan modificado.
 
     specify integration upgrade claude
 
-Comprobar el estado de las integraciones instaladas:
+Actualiza los archivos y comandos de la integración Claude, por ejemplo tras
+actualizar el CLI.
 
     specify integration status
 
-Comprobar que el ejecutable de Claude Code está disponible:
+Informa qué integraciones están instaladas y si faltan archivos o fueron
+modificados; añadir --json para CI y scripts.
 
     specify check
 
-Con Claude, las habilidades se invocan en el chat de Claude Code con el prefijo
-/speckit-, por ejemplo /speckit-specify en lugar de $speckit-specify. Al
-cambiar de Codex a Claude, sustituir $speckit- por /speckit- en los ejemplos
-de las secciones siguientes.
+Comprueba localmente, sin red, que el ejecutable de Claude Code y las demás
+herramientas de agente están disponibles.
+
+Con Claude, las habilidades se invocan en el chat de Claude Code con el
+prefijo /speckit-, por ejemplo /speckit-specify en lugar de $speckit-specify.
+Al cambiar de Codex a Claude, sustituir $speckit- por /speckit- en los
+ejemplos de las secciones siguientes.
 
 ## 6. Extensiones
 
@@ -614,6 +623,9 @@ Instalar primero la extensión:
 
     specify extension add bug
 
+Instala la extensión bug, que añade los comandos de evaluación, corrección y
+prueba de bugs.
+
 Flujo del agente:
 
     $speckit-bug-assess "Submitting an empty password crashes the login form." slug=login-crash
@@ -635,6 +647,9 @@ corregido.
 Instalar primero la extensión:
 
     specify extension add assess
+
+Instala la extensión assess, que añade los comandos para evaluar una idea antes
+de especificarla.
 
 Flujo del agente:
 
@@ -670,6 +685,9 @@ Instalación:
 
     specify extension add git
 
+Instala la extensión git, que añade ramas, validación de nombres y commits
+automáticos.
+
 Comandos del agente que proporciona la extensión:
 
     $speckit-git-initialize
@@ -694,6 +712,9 @@ Configuración principal:
 
     .specify/extensions/git/git-config.yml
 
+Archivo de configuración de la extensión Git: nombres de ramas, commits y
+hooks.
+
 La extensión Git es opcional. Si Git no está instalado, Spec Kit puede seguir
 creando especificaciones, aunque las ramas, validaciones y remotos se omiten
 con una advertencia.
@@ -705,6 +726,14 @@ con una advertencia.
     cd mi-proyecto
     specify extension add git
 
+- uv tool install specify-cli: instala el ejecutable specify.
+- specify init mi-proyecto --integration codex --script ps: crea el proyecto
+  con Codex como agente y scripts PowerShell.
+- cd mi-proyecto: entra en la carpeta del proyecto.
+- specify extension add git: instala la extensión opcional de ramas y commits.
+
+Flujo en el chat de Codex:
+
     $speckit-constitution Define principles for quality, testing and maintainability.
     $speckit-specify Describe the feature and its user stories.
     $speckit-clarify Resolve the ambiguous requirements.
@@ -715,19 +744,39 @@ con una advertencia.
     $speckit-implement
     $speckit-converge
 
+- $speckit-constitution: fija los principios de calidad, pruebas y
+  mantenibilidad del proyecto.
+- $speckit-specify: crea la especificación funcional con historias de usuario.
+- $speckit-clarify: resuelve las ambigüedades de la especificación.
+- $speckit-plan: elige la arquitectura y la tecnología.
+- $speckit-checklist: genera la lista de calidad de los requisitos.
+- $speckit-tasks: convierte el diseño en tareas ordenadas en tasks.md.
+- $speckit-analyze: revisa en solo lectura la coherencia entre spec, plan y
+  tareas.
+- $speckit-implement: ejecuta las tareas de tasks.md.
+- $speckit-converge: compara la implementación con la spec y añade las tareas
+  que falten.
+
 Si converge agrega tareas, repetir:
 
     $speckit-implement
     $speckit-converge
 
-### Variante para Claude Code
+- $speckit-implement: ejecuta las tareas nuevas.
+- $speckit-converge: vuelve a comprobar; termina cuando informa Converged.
 
-Preparación del proyecto:
+### Variante para Claude Code
 
     uv tool install specify-cli
     specify init mi-proyecto --integration claude --script ps
     cd mi-proyecto
     specify extension add git
+
+- uv tool install specify-cli: instala el ejecutable specify.
+- specify init mi-proyecto --integration claude --script ps: crea el proyecto
+  con Claude como agente y scripts PowerShell.
+- cd mi-proyecto: entra en la carpeta del proyecto.
+- specify extension add git: instala la extensión opcional de ramas y commits.
 
 Flujo en el chat de Claude Code:
 
@@ -741,10 +790,26 @@ Flujo en el chat de Claude Code:
     /speckit-implement
     /speckit-converge
 
+- /speckit-constitution: fija los principios de calidad, pruebas y
+  mantenibilidad del proyecto.
+- /speckit-specify: crea la especificación funcional con historias de usuario.
+- /speckit-clarify: resuelve las ambigüedades de la especificación.
+- /speckit-plan: elige la arquitectura y la tecnología.
+- /speckit-checklist: genera la lista de calidad de los requisitos.
+- /speckit-tasks: convierte el diseño en tareas ordenadas en tasks.md.
+- /speckit-analyze: revisa en solo lectura la coherencia entre spec, plan y
+  tareas.
+- /speckit-implement: ejecuta las tareas de tasks.md.
+- /speckit-converge: compara la implementación con la spec y añade las tareas
+  que falten.
+
 Si converge agrega tareas, repetir:
 
     /speckit-implement
     /speckit-converge
+
+- /speckit-implement: ejecuta las tareas nuevas.
+- /speckit-converge: vuelve a comprobar; termina cuando informa Converged.
 
 ## 16. Fuentes oficiales
 

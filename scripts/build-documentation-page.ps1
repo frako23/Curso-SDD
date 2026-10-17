@@ -103,14 +103,16 @@ function Add-Snippet {
         [string]$Kind,
         [string]$Label,
         [string]$Text,
-        [string]$Locator
+        [string]$Locator,
+        [string]$Description = '',
+        [bool]$Claude = $false
     )
 
     if ([string]::IsNullOrWhiteSpace($Text)) {
         return
     }
 
-    $key = "$Kind|$Text"
+    $key = "$Kind|$Claude|$Text"
     if ($Seen.ContainsKey($key)) {
         return
     }
@@ -121,19 +123,120 @@ function Add-Snippet {
             label = $Label
             text = $Text
             locator = $Locator
+            description = $Description
+            claude = $Claude
         })
+}
+
+function Test-ProseLine {
+    param([string]$Line)
+
+    return (-not [string]::IsNullOrWhiteSpace($Line)) -and
+        (-not $Line.StartsWith('    ')) -and
+        (-not $Line.StartsWith("`t")) -and
+        ($Line -notmatch '^#{1,6}\s')
+}
+
+# Definición de un bloque: el párrafo que le sigue, o el texto introductorio
+# (terminado en ':') que le precede. Un párrafo que termina en ':' introduce
+# el bloque siguiente y no define el anterior.
+function Get-BlockDescription {
+    param(
+        [string[]]$Lines,
+        [int]$Start,
+        [int]$End
+    )
+
+    $after = New-Object System.Collections.ArrayList
+    $cursor = $End
+    while ($cursor -lt $Lines.Count -and [string]::IsNullOrWhiteSpace($Lines[$cursor])) { $cursor++ }
+    while ($cursor -lt $Lines.Count -and (Test-ProseLine $Lines[$cursor])) {
+        [void]$after.Add($Lines[$cursor].TrimEnd())
+        $cursor++
+    }
+    if ($after.Count -gt 0 -and -not ([string]$after[$after.Count - 1]).EndsWith(':')) {
+        return ($after -join "`n")
+    }
+
+    $before = New-Object System.Collections.ArrayList
+    $cursor = $Start - 1
+    while ($cursor -ge 0 -and [string]::IsNullOrWhiteSpace($Lines[$cursor])) { $cursor-- }
+    while ($cursor -ge 0 -and (Test-ProseLine $Lines[$cursor])) {
+        $before.Insert(0, $Lines[$cursor].TrimEnd())
+        $cursor--
+    }
+    if ($before.Count -gt 0 -and ([string]$before[$before.Count - 1]).EndsWith(':')) {
+        return (($before -join "`n").TrimEnd(':'))
+    }
+
+    return ''
+}
+
+# Si la definición de un bloque es una lista "- clave: texto", un comando suelto
+# recibe solo las viñetas cuya clave aparece en él; si ninguna coincide, la
+# definición completa.
+function Select-LineDescription {
+    param(
+        [string]$Description,
+        [string]$Command
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Description) -or $Description -notmatch '(?m)^- ') {
+        return $Description
+    }
+
+    $bullets = New-Object System.Collections.ArrayList
+    foreach ($row in ($Description -split "`n")) {
+        if ($row.StartsWith('- ')) {
+            [void]$bullets.Add($row)
+        } elseif ($bullets.Count -gt 0 -and $row -match '^\s') {
+            $bullets[$bullets.Count - 1] = $bullets[$bullets.Count - 1] + ' ' + $row.Trim()
+        }
+    }
+
+    $selected = New-Object System.Collections.ArrayList
+    foreach ($bullet in $bullets) {
+        $separator = $bullet.IndexOf(': ')
+        if ($separator -lt 0) { continue }
+        foreach ($key in ($bullet.Substring(2, $separator - 2) -split ' / ')) {
+            $pattern = '(?<![A-Za-z0-9_])' + [regex]::Escape($key.Trim()) + '(?![A-Za-z0-9_-])'
+            if ($Command -match $pattern) {
+                [void]$selected.Add($bullet)
+                break
+            }
+        }
+    }
+
+    if ($selected.Count -eq 0) {
+        return $Description
+    }
+
+    return (($selected | ForEach-Object { $_.Substring(2) }) -join "`n")
 }
 
 function Get-Snippets {
     param(
         [string]$Source,
         [string]$CopyMode,
-        [string]$DocumentPath
+        [string]$DocumentPath,
+        [bool]$Annotate = $false
     )
 
     $list = New-Object System.Collections.ArrayList
     $seen = @{}
-    $lines = $Source -split "`r?`n", -1
+    $lines = [string[]]($Source -split "`r?`n", -1)
+
+    # Con $Annotate, cada snippet lleva su definición y se marca como de Claude
+    # si aparece bajo un encabezado que menciona Claude o su texto lo menciona.
+    $claudeAt = New-Object 'bool[]' $lines.Count
+    $lineDescription = @{}
+    $claudeSection = $false
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($Annotate -and $lines[$i] -match '^#{1,6}\s') {
+            $claudeSection = ($lines[$i] -match '(?i)claude')
+        }
+        $claudeAt[$i] = $claudeSection
+    }
 
     if ($CopyMode -eq 'whole') {
         Add-Snippet $list $seen 'prompt' 'Prompt completo' $Source 'archivo completo'
@@ -151,7 +254,10 @@ function Get-Snippets {
                 $fenceStart = $index + 1
                 $fenceLines = New-Object System.Collections.ArrayList
             } else {
-                Add-Snippet $list $seen 'command' 'Bloque de código' (($fenceLines -join "`n")) ("líneas $fenceStart-" + $index)
+                $fenceText = ($fenceLines -join "`n")
+                $fenceClaude = $Annotate -and ($claudeAt[$index] -or $fenceText -match '(?i)\bclaude\b')
+                $fenceDescription = if ($Annotate) { Get-BlockDescription $lines ($fenceStart) ($index + 1) } else { '' }
+                Add-Snippet $list $seen 'command' 'Bloque de código' $fenceText ("líneas $fenceStart-" + $index) $fenceDescription $fenceClaude
                 $inFence = $false
             }
             continue
@@ -171,6 +277,7 @@ function Get-Snippets {
 
             $block = New-Object System.Collections.ArrayList
             $start = $index + 1
+            $blockStart = $index
             while ($index -lt $lines.Count) {
                 $current = [string]$lines[$index]
                 if ([string]::IsNullOrWhiteSpace($current)) {
@@ -194,7 +301,11 @@ function Get-Snippets {
             while ($block.Count -gt 0 -and [string]::IsNullOrWhiteSpace([string]$block[$block.Count - 1])) {
                 $block.RemoveAt($block.Count - 1)
             }
-            Add-Snippet $list $seen 'command' 'Bloque de comandos' (($block -join "`n")) ("líneas $start-" + $index)
+            $blockText = ($block -join "`n")
+            $blockClaude = $Annotate -and ($claudeAt[$blockStart] -or $blockText -match '(?i)\bclaude\b')
+            $blockDescription = if ($Annotate) { Get-BlockDescription $lines $blockStart $index } else { '' }
+            for ($row = $blockStart; $row -lt $index; $row++) { $lineDescription[$row] = $blockDescription }
+            Add-Snippet $list $seen 'command' 'Bloque de comandos' $blockText ("líneas $start-" + $index) $blockDescription $blockClaude
             $index--
         }
     }
@@ -207,10 +318,12 @@ function Get-Snippets {
         }
     }
 
-    foreach ($line in $lines) {
-        $candidate = $line.Trim()
+    for ($index = 0; $index -lt $lines.Count; $index++) {
+        $candidate = $lines[$index].Trim()
         if (Test-CommandText $candidate) {
-            Add-Snippet $list $seen 'command' 'Comando' $candidate 'línea de comando'
+            $lineClaude = $Annotate -and ($claudeAt[$index] -or $candidate -match '(?i)\bclaude\b')
+            $lineText = if ($lineDescription.ContainsKey($index)) { Select-LineDescription ([string]$lineDescription[$index]) $candidate } else { '' }
+            Add-Snippet $list $seen 'command' 'Comando' $candidate 'línea de comando' $lineText $lineClaude
         }
     }
 
@@ -273,7 +386,7 @@ foreach ($file in $sourceFiles) {
         referenceProject = if ($null -eq $entry.referenceProject) { '' } else { [string]$entry.referenceProject }
         source = $source
         copyMode = if ($null -eq $entry.copyMode) { 'none' } else { [string]$entry.copyMode }
-        snippets = if ($entry.type -eq 'pdf') { @() } else { @(Get-Snippets $source ([string]$entry.copyMode) $relativePath) }
+        snippets = if ($entry.type -eq 'pdf') { @() } else { @(Get-Snippets $source ([string]$entry.copyMode) $relativePath ([bool]$entry.snippetMetadata)) }
     }
 }
 
@@ -381,6 +494,12 @@ button:hover, .button:hover { background: #0b4f4b; }
 .snippet-head button:hover { background: #d2f5ef; }
 .snippet-head button.is-success { color: #073b35; background: #b6f0c3; }
 .snippet-head button.is-failure { color: #5b1a1a; background: #fecaca; }
+.snippet-card[hidden] { display: none; }
+.snippet-badge { margin-left: .5rem; padding: .1rem .45rem; color: #10262a; background: #f5c89a; border-radius: 999px; font-size: .72rem; font-weight: 800; }
+.snippet-desc { margin: 0; padding: .6rem .8rem; color: #c8dde0; background: #1b2a31; border-bottom: 1px solid #2c4149; font-size: .85rem; white-space: pre-line; }
+.filter-row { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin-top: .8rem; }
+.filter-toggle { display: inline-flex; gap: .5rem; align-items: center; font-weight: 700; cursor: pointer; }
+.filter-toggle input { width: 1.15rem; height: 1.15rem; accent-color: var(--accent-dark); }
 pre { margin: 0; overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
 .snippet-card pre { padding: 1rem; color: var(--code-ink); }
 code, pre { font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
@@ -417,6 +536,8 @@ $script = @'
   const cards = Array.from(document.querySelectorAll('[data-document]'));
   const sections = Array.from(document.querySelectorAll('[data-section-shell]'));
   const copyButtons = Array.from(document.querySelectorAll('[data-copy-target]'));
+  const claudeFilter = document.querySelector('#filter-claude');
+  const snippetCards = Array.from(document.querySelectorAll('[data-snippet]'));
 
   const normalize = (value) => String(value || '')
     .normalize('NFD')
@@ -427,10 +548,17 @@ $script = @'
 
   const updateSearch = () => {
     const query = normalize(input.value);
+    const claudeOnly = claudeFilter.checked;
     let visible = 0;
 
+    snippetCards.forEach((snippet) => {
+      snippet.hidden = claudeOnly && snippet.dataset.claude !== 'true';
+    });
+
     cards.forEach((card) => {
-      const matches = !query || normalize(card.dataset.search).includes(query);
+      const matchesQuery = !query || normalize(card.dataset.search).includes(query);
+      const matchesClaude = !claudeOnly || card.querySelector('[data-snippet]:not([hidden])');
+      const matches = matchesQuery && matchesClaude;
       card.hidden = !matches;
       if (matches) visible += 1;
     });
@@ -440,19 +568,23 @@ $script = @'
       section.hidden = !hasVisibleDocument;
     });
 
-    clearButton.hidden = !input.value;
-    if (!query) {
+    clearButton.hidden = !input.value && !claudeOnly;
+    const claudeCount = claudeOnly ? snippetCards.filter((snippet) => !snippet.hidden && !snippet.closest('[hidden]')).length : 0;
+    const claudeNote = claudeOnly ? ` Solo snippets de Claude (${claudeCount}).` : '';
+    if (!query && !claudeOnly) {
       searchStatus.textContent = `Mostrando ${cards.length} documentos.`;
     } else if (!visible) {
-      searchStatus.textContent = `No hay resultados para “${input.value.trim()}”.`;
+      searchStatus.textContent = `No hay resultados${query ? ` para “${input.value.trim()}”` : ''}.${claudeNote}`;
     } else {
-      searchStatus.textContent = `${visible} documento${visible === 1 ? '' : 's'} encontrado${visible === 1 ? '' : 's'}.`;
+      searchStatus.textContent = `${visible} documento${visible === 1 ? '' : 's'} encontrado${visible === 1 ? '' : 's'}.${claudeNote}`;
     }
   };
 
   input.addEventListener('input', updateSearch);
+  claudeFilter.addEventListener('change', updateSearch);
   clearButton.addEventListener('click', () => {
     input.value = '';
+    claudeFilter.checked = false;
     input.focus();
     updateSearch();
   });
@@ -531,6 +663,9 @@ $builder = New-Object System.Text.StringBuilder
 [void]$builder.AppendLine('          </div>')
 [void]$builder.AppendLine('          <button id="clear-search" class="secondary-button" type="button" hidden>Limpiar búsqueda</button>')
 [void]$builder.AppendLine('        </div>')
+[void]$builder.AppendLine('        <div class="filter-row">')
+[void]$builder.AppendLine('          <label class="filter-toggle" for="filter-claude"><input id="filter-claude" type="checkbox"> Solo snippets de Claude</label>')
+[void]$builder.AppendLine('        </div>')
 [void]$builder.AppendLine('        <p id="search-status" class="search-status" aria-live="polite"></p>')
 [void]$builder.AppendLine('      </div>')
 [void]$builder.AppendLine('    </div>')
@@ -569,7 +704,7 @@ foreach ($section in $sections) {
         $documentId = "doc-$documentSlug"
         $snippetList = @($document.snippets)
         $searchParts = @($document.title, $document.path, $document.explanation, $document.referenceProject, $section.title, $document.source)
-        foreach ($snippet in $snippetList) { $searchParts += $snippet.text }
+        foreach ($snippet in $snippetList) { $searchParts += $snippet.text; $searchParts += $snippet.description }
         $searchText = Encode-Html ($searchParts -join ' ')
         [void]$builder.AppendLine(('        <article class="document-card" id="' + $documentId + '" data-document data-search="' + $searchText + '">'))
         [void]$builder.AppendLine("          <h3>$(Encode-Html $document.title)</h3>")
@@ -598,10 +733,15 @@ foreach ($section in $sections) {
                     $label = Encode-Html $snippet.label
                     $kind = Encode-Html $snippet.kind
                     $snippetText = Encode-Html $snippet.text
-                    [void]$builder.AppendLine(('            <div class="snippet-card" data-snippet data-kind="' + $kind + '">'))
+                    $claudeAttribute = if ($snippet.claude) { 'true' } else { 'false' }
+                    [void]$builder.AppendLine(('            <div class="snippet-card" data-snippet data-kind="' + $kind + '" data-claude="' + $claudeAttribute + '">'))
                     $snippetTypeLabel = if ($snippet.kind -eq 'prompt') { 'Prompt' } else { 'Comando' }
-                    $snippetHead = '              <div class="snippet-head"><span>' + $snippetTypeLabel + ' · ' + $label + '</span><button type="button" data-copy-target="' + $snippetId + '" aria-label="Copiar ' + $label + ' de ' + (Encode-Html $document.title) + '">Copiar</button></div>'
+                    $claudeBadge = if ($snippet.claude) { '<span class="snippet-badge">Claude</span>' } else { '' }
+                    $snippetHead = '              <div class="snippet-head"><span>' + $snippetTypeLabel + ' · ' + $label + $claudeBadge + '</span><button type="button" data-copy-target="' + $snippetId + '" aria-label="Copiar ' + $label + ' de ' + (Encode-Html $document.title) + '">Copiar</button></div>'
                     [void]$builder.AppendLine($snippetHead)
+                    if (-not [string]::IsNullOrWhiteSpace($snippet.description)) {
+                        [void]$builder.AppendLine(('              <p class="snippet-desc">' + (Encode-Html $snippet.description) + '</p>'))
+                    }
                     [void]$builder.AppendLine(('              <pre id="' + $snippetId + '" tabindex="0"><code>' + $snippetText + '</code></pre>'))
                     [void]$builder.AppendLine('            </div>')
                     $snippetIndex++

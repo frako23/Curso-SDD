@@ -53,7 +53,7 @@ Después, abrir `http://localhost:8000/index.html`. Detener el servidor con `Ctr
 3. **Copia de prompt**: copiar un prompt multilínea con acentos y pegarlo en un editor; comparar saltos de línea y caracteres.
 4. **Copia de comando**: copiar un comando de GitHub Spec Kit con parámetros y confirmar que no incluye el título ni la explicación.
 5. **Fallback**: abrir directamente con `file://` o bloquear el permiso del portapapeles; confirmar que no aparece “Copiado” falsamente y que el texto sigue seleccionable.
-6. **Búsqueda**: buscar `GesFact`, `speckit`, una ruta con espacios y un término inexistente; limpiar el filtro y confirmar que vuelve todo el corpus.
+6. **Búsqueda**: buscar `GesFact`, `speckit`, una ruta con espacios y un término inexistente; limpiar el filtro y confirmar que vuelve todo el corpus. Activar «Solo snippets de Claude» y comprobar que solo quedan snippets con la etiqueta Claude, cada uno con su definición; combinarlo con una búsqueda y desactivarlo con «Limpiar búsqueda».
 7. **PDF**: abrir y descargar el recurso PDF desde su tarjeta, sin que la página dependa de extraerlo a texto.
 8. **Responsive y teclado**: revisar una pantalla estrecha y una ancha; navegar por índice, búsqueda y botones usando teclado y comprobar foco visible.
 

@@ -64,6 +64,11 @@ No se encontró instalación, `dev`, lint, typecheck ni runner de pruebas;
   caracteres especiales.
 - Mantener las explicaciones y metadatos en `content/documentation-manifest.json`;
   no mezclarlos dentro del prompt o fuente mostrada al usuario.
+- `snippetMetadata: true` en un documento del manifiesto activa, para ese
+  documento, la definición de cada snippet (el párrafo o lista que sigue al
+  bloque, o el texto introductorio terminado en `:`) y la marca Claude usada por
+  el filtro «Solo snippets de Claude»: encabezado que menciona Claude o texto
+  con la palabra «claude».
 - Un bloque copiable contiene exactamente el prompt o comando, sin título ni
   explicación; su extracción se cambia en el generador y se valida con la fuente.
 - Respetar los prefijos numéricos y la organización temática que ya usan las

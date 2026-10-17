@@ -32,6 +32,8 @@ Este contrato describe comportamientos observables. No fija nombres de clases, l
 - Las coincidencias pueden proceder del título, ruta, explicación, sección o fuente.
 - Un resultado muestra suficiente contexto para abrir el documento.
 - Cero resultados produce un mensaje claro y una acción para limpiar.
+- La casilla «Solo snippets de Claude» oculta los snippets no marcados como Claude y los documentos que se quedan sin ninguno; se combina con el texto de búsqueda y «Limpiar búsqueda» la desactiva. Solo los documentos con `snippetMetadata` en el manifiesto (hoy, la referencia de GitHub Spec Kit) llevan marca Claude.
+- En esos documentos cada snippet muestra su definición fuera del bloque copiable: la copia sigue siendo solo el comando.
 
 ## Adaptación y accesibilidad
 
