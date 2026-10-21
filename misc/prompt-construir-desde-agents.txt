@@ -1,0 +1,73 @@
+Prompt: construir un proyecto desde cero a partir de AGENTS.md
+================================================================
+
+Uso: coloca el AGENTS.md del proyecto en la raíz de una carpeta vacía (o
+con solo ese archivo), abre el agente en esa carpeta y pega el prompt de
+abajo. El AGENTS.md define el qué (requisitos de negocio, detalles
+técnicos, colores, estrategia, estándares); este prompt define el cómo
+trabajar y fija el stack.
+
+----------------------------------------------------------------------
+PROMPT
+----------------------------------------------------------------------
+
+Lee el archivo AGENTS.md de la raíz. Es la única fuente de verdad del
+proyecto: requisitos de negocio, detalles técnicos, esquema de color,
+estrategia y estándares de código. Construye el proyecto completo desde
+cero siguiéndolo al pie de la letra.
+
+Stack obligatorio:
+
+- Next.js (última versión estable, App Router) con TypeScript.
+- Tailwind CSS para estilos, usando exactamente los colores del AGENTS.md.
+- Persistencia: decide según AGENTS.md.
+  - Si AGENTS.md dice "No persistence" o no menciona datos persistentes,
+    NO añadas base de datos ni Prisma. Mantén el estado en el cliente.
+  - Si requiere persistencia, usa Prisma ORM (última versión) con
+    PostgreSQL. Define el esquema en prisma/schema.prisma, usa migraciones
+    (prisma migrate dev) y un seed con datos de ejemplo. Lee la conexión de
+    DATABASE_URL desde .env; crea .env.example sin secretos y añade .env
+    al .gitignore. Para PostgreSQL local usa un docker-compose.yml mínimo.
+  - Accede a los datos desde Server Components, Server Actions o Route
+    Handlers; no expongas Prisma al cliente.
+- Pruebas: Vitest + Testing Library para unitarias; Playwright para
+  integración/E2E.
+- Usa librerías populares y mantenidas. Si AGENTS.md indica un
+  subdirectorio para la app (por ejemplo `frontend`), crea ahí el proyecto
+  Next.js; si no, en la raíz.
+- Si AGENTS.md contradice este stack, prevalece AGENTS.md salvo en lo que
+  respecta a Prisma y PostgreSQL, que aplican solo si hay persistencia.
+
+Proceso (respeta la sección "Strategy" de AGENTS.md; si no existe, usa esta):
+
+1. Antes de escribir código, crea PLAN.md con fases y criterios de éxito
+   marcables (checkboxes) para cada fase: andamiaje (incluido .gitignore),
+   modelo de datos si aplica, funcionalidades, interfaz, pruebas
+   unitarias, pruebas de integración y arranque final.
+2. Ejecuta el plan fase por fase. Al terminar cada fase, ejecuta sus
+   pruebas, marca los criterios cumplidos en PLAN.md y no avances si algo
+   falla.
+3. Escribe pruebas unitarias rigurosas de la lógica y los componentes
+   clave. Después realiza pruebas de integración con Playwright que
+   recorran los flujos de usuario descritos en los requisitos de negocio;
+   corrige los defectos que aparezcan.
+4. Termina solo cuando el MVP esté completo y probado, con el servidor
+   en marcha y listo para que yo lo use. Indícame la URL y los comandos
+   para arrancarlo, probarlo y, si hay base de datos, migrarla y poblarla.
+
+Reglas:
+
+- Respeta los "Coding standards" de AGENTS.md: simplicidad, sin
+  sobreingeniería, sin funcionalidades extra, sin programación defensiva
+  innecesaria, README mínimo y sin emojis.
+- No implementes nada fuera del alcance de los requisitos de negocio.
+- No incluyas secretos en el código, los logs ni las respuestas.
+- Usa la UI y los textos en el idioma que indique AGENTS.md; si no lo
+  indica, en el idioma en que está escrito.
+- Si algo es ambiguo y no se puede resolver con una decisión razonable y
+  simple, pregúntame antes de continuar; en caso contrario decide tú y
+  documenta la decisión en una línea en PLAN.md.
+
+Al finalizar, entrega un resumen breve: qué se construyó, qué pruebas se
+ejecutaron y con qué resultado, qué quedó sin verificar (si algo), y cómo
+usar la aplicación.

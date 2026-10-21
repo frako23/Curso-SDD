@@ -59,12 +59,12 @@ $actualPaths = @($sourceFiles | ForEach-Object { Get-RelativeRepositoryPath $_.F
 $manifestDocuments = @($manifest.documents)
 $manifestPaths = @($manifestDocuments | ForEach-Object { [string]$_.path })
 
-Assert-Condition ($sourceFiles.Count -eq 51) "El inventario de fuentes contiene $($sourceFiles.Count) archivos; se esperaban 51."
-Assert-Condition (($manifestDocuments.Count -eq 51)) "El manifiesto contiene $($manifestDocuments.Count) documentos; se esperaban 51."
+Assert-Condition ($sourceFiles.Count -eq 53) "El inventario de fuentes contiene $($sourceFiles.Count) archivos; se esperaban 53."
+Assert-Condition (($manifestDocuments.Count -eq 53)) "El manifiesto contiene $($manifestDocuments.Count) documentos; se esperaban 53."
 Assert-Condition ((@($actualPaths | Sort-Object) -join '|') -eq (@($manifestPaths | Sort-Object) -join '|')) 'Las rutas reales y las rutas del manifiesto no coinciden.'
 
 $counts = @($sourceFiles | Group-Object Extension | ForEach-Object { "$(($_.Name).ToLowerInvariant())=$($_.Count)" } | Sort-Object)
-$expectedCounts = @('.md=4', '.pdf=1', '.txt=45', '.yaml=1') | Sort-Object
+$expectedCounts = @('.md=5', '.pdf=1', '.txt=46', '.yaml=1') | Sort-Object
 Assert-Condition ((@($counts) -join '|') -eq (@($expectedCounts) -join '|')) "Conteos inesperados: $($counts -join ', ')"
 
 foreach ($section in @($manifest.sections)) {
@@ -85,7 +85,7 @@ foreach ($document in $manifestDocuments) {
 }
 
 $documentCount = ([regex]::Matches($html, '\sdata-document\s')).Count
-Assert-Condition ($documentCount -eq 51) "index.html contiene $documentCount tarjetas documentales; se esperaban 51."
+Assert-Condition ($documentCount -eq 53) "index.html contiene $documentCount tarjetas documentales; se esperaban 53."
 
 $copyMatches = [regex]::Matches($html, 'data-copy-target="([^"]+)"')
 Assert-Condition ($copyMatches.Count -gt 0) 'No se encontraron botones de copia.'
@@ -122,4 +122,4 @@ Write-Output 'VALIDATION_OK'
 Write-Output "Fuentes: $($sourceFiles.Count)"
 Write-Output "Tarjetas documentales: $documentCount"
 Write-Output "Bloques copiables: $($copyMatches.Count)"
-Write-Output 'Conteos: md=4, pdf=1, txt=45, yaml=1'
+Write-Output 'Conteos: md=5, pdf=1, txt=46, yaml=1'

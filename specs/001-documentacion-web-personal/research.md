@@ -54,7 +54,7 @@
 
 ## Decisión 4: Inventario explícito y alcance documental
 
-**Decision**: Incluir los 51 archivos fuera de `.git`, `.specify` y `.agents`: README, 45 prompts `.txt`, 3 documentos `.md` adicionales, la skill `.md`, un `.yaml` y el PDF.
+**Decision**: Incluir los 53 archivos fuera de `.git`, `.specify` y `.agents`: README, 46 prompts `.txt`, 4 documentos `.md` adicionales, la skill `.md`, un `.yaml` y el PDF.
 
 **Rationale**:
 

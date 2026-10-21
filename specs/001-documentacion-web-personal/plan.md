@@ -24,11 +24,11 @@ La solución usará estándares web sin dependencias externas ni backend. Un gen
 
 **Project Type**: Página web estática de documentación personal.
 
-**Performance Goals**: Mostrar el encabezado y el índice inmediatamente en uso local; actualizar la búsqueda sin una pausa perceptible para el corpus de 51 archivos; completar la copia después de que el navegador confirme la escritura.
+**Performance Goals**: Mostrar el encabezado y el índice inmediatamente en uso local; actualizar la búsqueda sin una pausa perceptible para el corpus de 53 archivos; completar la copia después de que el navegador confirme la escritura.
 
 **Constraints**: Sin servidor de aplicación, autenticación, red externa, fuentes remotas, persistencia, edición ni dependencias instalables. Deben conservarse acentos, saltos de línea, espacios, caracteres especiales, rutas con espacios y el contenido original del repositorio.
 
-**Scale/Scope**: Una persona, una página, 51 archivos documentales actuales —45 `.txt`, 4 `.md`, 1 `.yaml` y 1 `.pdf`—, cinco familias temáticas principales, un recurso PDF y un número abierto de bloques reutilizables extraídos del contenido.
+**Scale/Scope**: Una persona, una página, 53 archivos documentales actuales —46 `.txt`, 5 `.md`, 1 `.yaml` y 1 `.pdf`—, cinco familias temáticas principales, un recurso PDF y un número abierto de bloques reutilizables extraídos del contenido.
 
 ## Constitution Check
 

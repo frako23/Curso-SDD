@@ -57,7 +57,7 @@ Raíces fuente del inventario:
 
 Validaciones de inventario:
 
-- Deben existir 51 documentos: 45 `.txt`, 4 `.md`, 1 `.yaml` y 1 `.pdf`.
+- Deben existir 53 documentos: 46 `.txt`, 5 `.md`, 1 `.yaml` y 1 `.pdf`.
 - Solo se incluyen las raíces fuente declaradas arriba; no se incluyen `.git`, `.specify`, `.agents`, `specs/`, `scripts/`, `content/` ni `index.html` en el corpus de la página.
 - Cada ruta del manifiesto debe resolverse desde la raíz del repositorio.
 - El texto generado debe conservar los saltos de línea y caracteres Unicode del archivo fuente.

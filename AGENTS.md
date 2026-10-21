@@ -30,7 +30,7 @@ mediante PowerShell 5+ y contiene CSS/JavaScript embebidos. No hay
   `.agents/skills/`: skills instaladas para las fases del flujo.
 
 El corpus publicado está limitado a las raíces declaradas en el manifiesto:
-51 fuentes (45 `.txt`, 4 `.md`, 1 `.yaml` y 1 `.pdf`). `.specify/`, `.agents/`,
+53 fuentes (46 `.txt`, 5 `.md`, 1 `.yaml` y 1 `.pdf`). `.specify/`, `.agents/`,
 `specs/`, `scripts/`, `content/` e `index.html` están fuera de ese corpus.
 
 ## Comandos
@@ -148,7 +148,7 @@ partir de una inspección estática solamente.
   `.specify/workflows/speckit/workflow.yml`, las skills bajo `.agents/skills/`
   y `github spec kit/github spec kit.md`.
 - `README.md` conserva una descripción anterior de 48 archivos fuente,
-  mientras el manifiesto, el modelo y los scripts actuales exigen 51. No
+  mientras el manifiesto, el modelo y los scripts actuales exigen 53. No
   resuelvas esa discrepancia silenciosamente: si cambia el corpus, pide o
   documenta la decisión y actualiza todas las referencias afectadas.
 - `.specify/memory/constitution.md` sigue siendo la plantilla con marcadores

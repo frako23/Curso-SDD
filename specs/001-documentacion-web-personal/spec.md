@@ -22,7 +22,7 @@ Como usuario personal del material, quiero abrir una página única que explique
 
 1. **Given** la página se abre por primera vez, **When** el usuario observa el inicio, **Then** ve el título, el propósito, una explicación breve del alcance y una navegación hacia todas las secciones.
 2. **Given** el usuario está en el inicio, **When** selecciona una sección del índice, **Then** la página lo lleva al comienzo de esa sección y mantiene visible una forma de volver al índice.
-3. **Given** el usuario consulta el resumen del corpus, **When** compara los contadores con el repositorio, **Then** puede distinguir los 51 archivos documentales incluidos por la página y el recurso PDF complementario.
+3. **Given** el usuario consulta el resumen del corpus, **When** compara los contadores con el repositorio, **Then** puede distinguir los 53 archivos documentales incluidos por la página y el recurso PDF complementario.
 
 ### User Story 2 - Leer la documentación explicada por secciones (Priority: P1)
 
@@ -99,7 +99,7 @@ Como usuario personal que puede consultar el material desde un ordenador o un m�
 
 - **FR-001**: La página debe presentar en un único documento web el propósito del repositorio, su alcance, sus recorridos recomendados y un índice navegable.
 - **FR-002**: La página debe organizar el material en secciones coherentes con el repositorio: introducción y guía general, `spec-first`, `reverse-specs`, `trabajo en paralelo`, `modernización guiada`, `spec-anchored`, GitHub Spec Kit y recursos complementarios.
-- **FR-003**: La página debe incluir los 51 archivos documentales actuales de las raíces fuente del repositorio: 45 `.txt`, 4 `.md`, 1 `.yaml` y 1 `.pdf`, identificando cada archivo por su ruta relativa original y excluyendo los artefactos de implementación de esta feature.
+- **FR-003**: La página debe incluir los 53 archivos documentales actuales de las raíces fuente del repositorio: 46 `.txt`, 5 `.md`, 1 `.yaml` y 1 `.pdf`, identificando cada archivo por su ruta relativa original y excluyendo los artefactos de implementación de esta feature.
 - **FR-004**: La página debe incluir el README como guía global, la referencia completa de GitHub Spec Kit, la skill `SKILLs/spec-audit/SKILL.md`, el prompt de agente, todos los prompts de las cinco familias temáticas y el PDF complementario.
 - **FR-005**: Cada sección debe comenzar con una explicación en lenguaje claro que describa su objetivo, el problema que aborda, su proyecto de referencia cuando exista y su relación con las demás secciones.
 - **FR-006**: Cada documento debe mostrar una ficha de contexto con título legible, ruta relativa, tipo de archivo, tema, proyecto de referencia cuando aplique y una explicación de cuándo resulta útil.
@@ -128,7 +128,7 @@ Como usuario personal que puede consultar el material desde un ordenador o un m�
 
 ### Measurable Outcomes
 
-- **SC-001**: Una revisión contra el inventario del repositorio encuentra representados 51 de 51 archivos documentales actuales, sin archivos omitidos ni rutas incorrectas.
+- **SC-001**: Una revisión contra el inventario del repositorio encuentra representados 53 de 53 archivos documentales actuales, sin archivos omitidos ni rutas incorrectas.
 - **SC-002**: En una prueba con cinco personas que no hayan revisado el repositorio, al menos cuatro pueden identificar el propósito de la página y abrir la sección adecuada en menos de 60 segundos.
 - **SC-003**: En una prueba de al menos 20 bloques representativos, incluidos prompts multilínea, comandos con parámetros, acentos, comillas y rutas con espacios, el 100% de las copias confirmadas coincide exactamente con el bloque elegido.
 - **SC-004**: En una prueba manual de búsqueda, al menos el 90% de los términos seleccionados a partir de títulos, nombres de archivos y comandos lleva al documento o sección donde aparece el término.
@@ -142,7 +142,7 @@ Como usuario personal que puede consultar el material desde un ordenador o un m�
 
 - La página está destinada a una sola persona y a consulta personal; no se necesita autenticación ni edición colaborativa.
 - La primera versión será un documento web autocontenido o estático, sin backend, base de datos ni persistencia de preferencias.
-- “Todos los archivos” se interpreta como todo el corpus documental actual de las raíces fuente (`README.md`, `github spec kit/`, `misc/`, `modernización guiada/`, `prompts/`, `reverse-specs/`, `SKILLs/`, `spec-anchored/`, `spec-first/` y `trabajo en paralelo/`): los 51 archivos enumerados en FR-003. `.git`, `.specify`, `.agents`, `specs/`, `scripts/`, `content/` e `index.html` son infraestructura o artefactos de la página, no material didáctico del corpus.
+- “Todos los archivos” se interpreta como todo el corpus documental actual de las raíces fuente (`README.md`, `github spec kit/`, `misc/`, `modernización guiada/`, `prompts/`, `reverse-specs/`, `SKILLs/`, `spec-anchored/`, `spec-first/` y `trabajo en paralelo/`): los 53 archivos enumerados en FR-003. `.git`, `.specify`, `.agents`, `specs/`, `scripts/`, `content/` e `index.html` son infraestructura o artefactos de la página, no material didáctico del corpus.
 - El PDF se conserva como archivo original y se ofrece como recurso complementario; no se asume que deba convertirse a texto para cumplir la consulta del material.
 - Las explicaciones editoriales se añaden sin alterar el contenido fuente, y las diferencias entre proyectos, idiomas, monedas o decisiones de los ejemplos se presentan como parte del material, no como un contrato común.
 - El inventario es una fotografía del repositorio en la fecha de esta especificación; los archivos futuros se incorporarán mediante una actualización posterior.

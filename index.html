@@ -121,7 +121,7 @@ code, pre { font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberatio
       <h1>Curso SDD — documentaci&#243;n personal</h1>
       <p class="lede">Una lectura guiada del repositorio: aprende qué contiene cada recorrido, conserva el texto original y copia cualquier prompt o comando con un toque.</p>
       <div class="hero-meta">
-        <span>51 documentos</span>
+        <span>53 documentos</span>
         <span>8 secciones</span>
         <span>Inventario: 2026-10-16</span>
       </div>
@@ -152,7 +152,7 @@ code, pre { font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberatio
         <li><a data-section-link href="#section-modernization"><strong>Modernizaci&#243;n guiada</strong><small>4 documentos</small></a></li>
         <li><a data-section-link href="#section-spec-anchored"><strong>Spec-anchored y control de drift</strong><small>5 documentos</small></a></li>
         <li><a data-section-link href="#section-spec-kit"><strong>GitHub Spec Kit</strong><small>1 documento</small></a></li>
-        <li><a data-section-link href="#section-complementary"><strong>Recursos complementarios</strong><small>3 documentos</small></a></li>
+        <li><a data-section-link href="#section-complementary"><strong>Recursos complementarios</strong><small>5 documentos</small></a></li>
       </ol>
     </section>
     <section class="section-card" id="section-intro" data-section-shell aria-labelledby="section-title-intro">
@@ -8753,6 +8753,195 @@ Si converge agrega tareas, repetir:
         <a class="back-link" href="#indice">Volver al índice &uarr;</a>
       </div>
       <div class="documents">
+        <article class="document-card" id="doc-misc-agents-md" data-document data-search="AGENTS.md base de un proyecto desde cero misc/AGENTS.md Ejemplo de AGENTS.md (tablero Kanban) con requisitos de negocio, detalles t&#233;cnicos, colores, estrategia y est&#225;ndares de c&#243;digo para que un agente construya un proyecto nuevo.  Recursos complementarios # Kanban Project
+
+## Business Requirements
+
+- An MVP of a Kanban style Project Management application as a web app  
+- The web app should only have 1 board
+- The board has fixed 5 columns that can be renamed  
+- Each card has a title and details only
+- Drag and drop interface to move cards between columns
+- Add a new card to a column; delete an existing card
+- No more functionality: no archive, no search/filter. Keep it simple.
+- The priority is a slick, professional, gorgeous UI/UX with very simple features
+- The app should open with dummy data populated for the single board
+
+## Technical Details
+
+- Implemented as a modern NextJS app, client rendered
+- The NextJS app should be created in a subdirectory `frontend`
+- No persistence
+- No user management for the MVP
+- Use popular libraries
+- As simple as possible but with an elegant UI
+
+## Color Scheme
+
+- Accent Yellow: `#ecad0a` - accent lines, highlights
+- Blue Primary: `#209dd7` - links, key sections
+- Purple Secondary: `#753991` - submit buttons, important actions
+- Dark Navy: `#032147` - main headings
+- Gray Text: `#888888` - supporting text, labels
+
+## Strategy
+
+1. Write plan with success criteria for each phase to be checked off. Include project scaffolding, including .gitignore, and rigorous unit testing.
+2. Execute the plan ensuring all critiera are met
+3. Carry out extensive integration testing with Playwright or similar, fixing defects
+4. Only complete when the MVP is finished and tested, with the server running and ready for the user
+
+## Coding standards
+
+1. Use latest versions of libraries and idiomatic approaches as of today
+2. Keep it simple - NEVER over-engineer, ALWAYS simplify, NO unnecessary defensive programming. No extra features - focus on simplicity.
+3. Be concise. Keep README minimal. IMPORTANT: no emojis ever
+ # Kanban Project
+
+## Business Requirements
+
+- An MVP of a Kanban style Project Management application as a web app  
+- The web app should only have 1 board
+- The board has fixed 5 columns that can be renamed  
+- Each card has a title and details only
+- Drag and drop interface to move cards between columns
+- Add a new card to a column; delete an existing card
+- No more functionality: no archive, no search/filter. Keep it simple.
+- The priority is a slick, professional, gorgeous UI/UX with very simple features
+- The app should open with dummy data populated for the single board
+
+## Technical Details
+
+- Implemented as a modern NextJS app, client rendered
+- The NextJS app should be created in a subdirectory `frontend`
+- No persistence
+- No user management for the MVP
+- Use popular libraries
+- As simple as possible but with an elegant UI
+
+## Color Scheme
+
+- Accent Yellow: `#ecad0a` - accent lines, highlights
+- Blue Primary: `#209dd7` - links, key sections
+- Purple Secondary: `#753991` - submit buttons, important actions
+- Dark Navy: `#032147` - main headings
+- Gray Text: `#888888` - supporting text, labels
+
+## Strategy
+
+1. Write plan with success criteria for each phase to be checked off. Include project scaffolding, including .gitignore, and rigorous unit testing.
+2. Execute the plan ensuring all critiera are met
+3. Carry out extensive integration testing with Playwright or similar, fixing defects
+4. Only complete when the MVP is finished and tested, with the server running and ready for the user
+
+## Coding standards
+
+1. Use latest versions of libraries and idiomatic approaches as of today
+2. Keep it simple - NEVER over-engineer, ALWAYS simplify, NO unnecessary defensive programming. No extra features - focus on simplicity.
+3. Be concise. Keep README minimal. IMPORTANT: no emojis ever
+ ">
+          <h3>AGENTS.md base de un proyecto desde cero</h3>
+          <div class="document-meta">
+            <code>misc/AGENTS.md</code><span>MD</span><span>Recursos complementarios</span>
+          </div>
+          <p class="explanation">Ejemplo de AGENTS.md (tablero Kanban) con requisitos de negocio, detalles t&#233;cnicos, colores, estrategia y est&#225;ndares de c&#243;digo para que un agente construya un proyecto nuevo.</p>
+          <div class="snippet-list" aria-label="Prompts y comandos reutilizables">
+            <div class="snippet-card" data-snippet data-kind="prompt" data-claude="false">
+              <div class="snippet-head"><span>Prompt · Prompt completo</span><button type="button" data-copy-target="doc-misc-agents-md-snippet-0" aria-label="Copiar Prompt completo de AGENTS.md base de un proyecto desde cero">Copiar</button></div>
+              <pre id="doc-misc-agents-md-snippet-0" tabindex="0"><code># Kanban Project
+
+## Business Requirements
+
+- An MVP of a Kanban style Project Management application as a web app  
+- The web app should only have 1 board
+- The board has fixed 5 columns that can be renamed  
+- Each card has a title and details only
+- Drag and drop interface to move cards between columns
+- Add a new card to a column; delete an existing card
+- No more functionality: no archive, no search/filter. Keep it simple.
+- The priority is a slick, professional, gorgeous UI/UX with very simple features
+- The app should open with dummy data populated for the single board
+
+## Technical Details
+
+- Implemented as a modern NextJS app, client rendered
+- The NextJS app should be created in a subdirectory `frontend`
+- No persistence
+- No user management for the MVP
+- Use popular libraries
+- As simple as possible but with an elegant UI
+
+## Color Scheme
+
+- Accent Yellow: `#ecad0a` - accent lines, highlights
+- Blue Primary: `#209dd7` - links, key sections
+- Purple Secondary: `#753991` - submit buttons, important actions
+- Dark Navy: `#032147` - main headings
+- Gray Text: `#888888` - supporting text, labels
+
+## Strategy
+
+1. Write plan with success criteria for each phase to be checked off. Include project scaffolding, including .gitignore, and rigorous unit testing.
+2. Execute the plan ensuring all critiera are met
+3. Carry out extensive integration testing with Playwright or similar, fixing defects
+4. Only complete when the MVP is finished and tested, with the server running and ready for the user
+
+## Coding standards
+
+1. Use latest versions of libraries and idiomatic approaches as of today
+2. Keep it simple - NEVER over-engineer, ALWAYS simplify, NO unnecessary defensive programming. No extra features - focus on simplicity.
+3. Be concise. Keep README minimal. IMPORTANT: no emojis ever
+</code></pre>
+            </div>
+          </div>
+          <details class="source-details">
+            <summary>Ver contenido original completo</summary>
+            <pre class="source-content" tabindex="0"><code># Kanban Project
+
+## Business Requirements
+
+- An MVP of a Kanban style Project Management application as a web app  
+- The web app should only have 1 board
+- The board has fixed 5 columns that can be renamed  
+- Each card has a title and details only
+- Drag and drop interface to move cards between columns
+- Add a new card to a column; delete an existing card
+- No more functionality: no archive, no search/filter. Keep it simple.
+- The priority is a slick, professional, gorgeous UI/UX with very simple features
+- The app should open with dummy data populated for the single board
+
+## Technical Details
+
+- Implemented as a modern NextJS app, client rendered
+- The NextJS app should be created in a subdirectory `frontend`
+- No persistence
+- No user management for the MVP
+- Use popular libraries
+- As simple as possible but with an elegant UI
+
+## Color Scheme
+
+- Accent Yellow: `#ecad0a` - accent lines, highlights
+- Blue Primary: `#209dd7` - links, key sections
+- Purple Secondary: `#753991` - submit buttons, important actions
+- Dark Navy: `#032147` - main headings
+- Gray Text: `#888888` - supporting text, labels
+
+## Strategy
+
+1. Write plan with success criteria for each phase to be checked off. Include project scaffolding, including .gitignore, and rigorous unit testing.
+2. Execute the plan ensuring all critiera are met
+3. Carry out extensive integration testing with Playwright or similar, fixing defects
+4. Only complete when the MVP is finished and tested, with the server running and ready for the user
+
+## Coding standards
+
+1. Use latest versions of libraries and idiomatic approaches as of today
+2. Keep it simple - NEVER over-engineer, ALWAYS simplify, NO unnecessary defensive programming. No extra features - focus on simplicity.
+3. Be concise. Keep README minimal. IMPORTANT: no emojis ever
+</code></pre>
+          </details>
+        </article>
         <article class="document-card" id="doc-misc-claude-course-course-prompts-workflow-2026-pdf" data-document data-search="PDF de prompts y workflow del curso misc/Claude_Course_Course_-_Prompts_Workflow_2026_.pdf Material PDF complementario que se conserva en su formato original para abrirlo o descargarlo.  Recursos complementarios ">
           <h3>PDF de prompts y workflow del curso</h3>
           <div class="document-meta">
@@ -8762,6 +8951,315 @@ Si converge agrega tareas, repetir:
           <div class="pdf-resource">
             <p>Este archivo se conserva como PDF original. Puedes abrirlo en otra pestaña o descargarlo para consultarlo fuera de esta guía.</p><a class="button" href="misc/Claude_Course_Course_-_Prompts_Workflow_2026_.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="button secondary-button" href="misc/Claude_Course_Course_-_Prompts_Workflow_2026_.pdf" download>Descargar PDF</a>
           </div>
+        </article>
+        <article class="document-card" id="doc-misc-prompt-construir-desde-agents-txt" data-document data-search="Prompt para construir un proyecto desde AGENTS.md misc/prompt-construir-desde-agents.txt Prompt que indica al agente c&#243;mo construir el proyecto descrito en AGENTS.md con Next.js y, si hay persistencia, Prisma y PostgreSQL, con plan por fases, pruebas y arranque final.  Recursos complementarios Prompt: construir un proyecto desde cero a partir de AGENTS.md
+================================================================
+
+Uso: coloca el AGENTS.md del proyecto en la ra&#237;z de una carpeta vac&#237;a (o
+con solo ese archivo), abre el agente en esa carpeta y pega el prompt de
+abajo. El AGENTS.md define el qu&#233; (requisitos de negocio, detalles
+t&#233;cnicos, colores, estrategia, est&#225;ndares); este prompt define el c&#243;mo
+trabajar y fija el stack.
+
+----------------------------------------------------------------------
+PROMPT
+----------------------------------------------------------------------
+
+Lee el archivo AGENTS.md de la ra&#237;z. Es la &#250;nica fuente de verdad del
+proyecto: requisitos de negocio, detalles t&#233;cnicos, esquema de color,
+estrategia y est&#225;ndares de c&#243;digo. Construye el proyecto completo desde
+cero sigui&#233;ndolo al pie de la letra.
+
+Stack obligatorio:
+
+- Next.js (&#250;ltima versi&#243;n estable, App Router) con TypeScript.
+- Tailwind CSS para estilos, usando exactamente los colores del AGENTS.md.
+- Persistencia: decide seg&#250;n AGENTS.md.
+  - Si AGENTS.md dice &quot;No persistence&quot; o no menciona datos persistentes,
+    NO a&#241;adas base de datos ni Prisma. Mant&#233;n el estado en el cliente.
+  - Si requiere persistencia, usa Prisma ORM (&#250;ltima versi&#243;n) con
+    PostgreSQL. Define el esquema en prisma/schema.prisma, usa migraciones
+    (prisma migrate dev) y un seed con datos de ejemplo. Lee la conexi&#243;n de
+    DATABASE_URL desde .env; crea .env.example sin secretos y a&#241;ade .env
+    al .gitignore. Para PostgreSQL local usa un docker-compose.yml m&#237;nimo.
+  - Accede a los datos desde Server Components, Server Actions o Route
+    Handlers; no expongas Prisma al cliente.
+- Pruebas: Vitest + Testing Library para unitarias; Playwright para
+  integraci&#243;n/E2E.
+- Usa librer&#237;as populares y mantenidas. Si AGENTS.md indica un
+  subdirectorio para la app (por ejemplo `frontend`), crea ah&#237; el proyecto
+  Next.js; si no, en la ra&#237;z.
+- Si AGENTS.md contradice este stack, prevalece AGENTS.md salvo en lo que
+  respecta a Prisma y PostgreSQL, que aplican solo si hay persistencia.
+
+Proceso (respeta la secci&#243;n &quot;Strategy&quot; de AGENTS.md; si no existe, usa esta):
+
+1. Antes de escribir c&#243;digo, crea PLAN.md con fases y criterios de &#233;xito
+   marcables (checkboxes) para cada fase: andamiaje (incluido .gitignore),
+   modelo de datos si aplica, funcionalidades, interfaz, pruebas
+   unitarias, pruebas de integraci&#243;n y arranque final.
+2. Ejecuta el plan fase por fase. Al terminar cada fase, ejecuta sus
+   pruebas, marca los criterios cumplidos en PLAN.md y no avances si algo
+   falla.
+3. Escribe pruebas unitarias rigurosas de la l&#243;gica y los componentes
+   clave. Despu&#233;s realiza pruebas de integraci&#243;n con Playwright que
+   recorran los flujos de usuario descritos en los requisitos de negocio;
+   corrige los defectos que aparezcan.
+4. Termina solo cuando el MVP est&#233; completo y probado, con el servidor
+   en marcha y listo para que yo lo use. Ind&#237;came la URL y los comandos
+   para arrancarlo, probarlo y, si hay base de datos, migrarla y poblarla.
+
+Reglas:
+
+- Respeta los &quot;Coding standards&quot; de AGENTS.md: simplicidad, sin
+  sobreingenier&#237;a, sin funcionalidades extra, sin programaci&#243;n defensiva
+  innecesaria, README m&#237;nimo y sin emojis.
+- No implementes nada fuera del alcance de los requisitos de negocio.
+- No incluyas secretos en el c&#243;digo, los logs ni las respuestas.
+- Usa la UI y los textos en el idioma que indique AGENTS.md; si no lo
+  indica, en el idioma en que est&#225; escrito.
+- Si algo es ambiguo y no se puede resolver con una decisi&#243;n razonable y
+  simple, preg&#250;ntame antes de continuar; en caso contrario decide t&#250; y
+  documenta la decisi&#243;n en una l&#237;nea en PLAN.md.
+
+Al finalizar, entrega un resumen breve: qu&#233; se construy&#243;, qu&#233; pruebas se
+ejecutaron y con qu&#233; resultado, qu&#233; qued&#243; sin verificar (si algo), y c&#243;mo
+usar la aplicaci&#243;n.
+ Prompt: construir un proyecto desde cero a partir de AGENTS.md
+================================================================
+
+Uso: coloca el AGENTS.md del proyecto en la ra&#237;z de una carpeta vac&#237;a (o
+con solo ese archivo), abre el agente en esa carpeta y pega el prompt de
+abajo. El AGENTS.md define el qu&#233; (requisitos de negocio, detalles
+t&#233;cnicos, colores, estrategia, est&#225;ndares); este prompt define el c&#243;mo
+trabajar y fija el stack.
+
+----------------------------------------------------------------------
+PROMPT
+----------------------------------------------------------------------
+
+Lee el archivo AGENTS.md de la ra&#237;z. Es la &#250;nica fuente de verdad del
+proyecto: requisitos de negocio, detalles t&#233;cnicos, esquema de color,
+estrategia y est&#225;ndares de c&#243;digo. Construye el proyecto completo desde
+cero sigui&#233;ndolo al pie de la letra.
+
+Stack obligatorio:
+
+- Next.js (&#250;ltima versi&#243;n estable, App Router) con TypeScript.
+- Tailwind CSS para estilos, usando exactamente los colores del AGENTS.md.
+- Persistencia: decide seg&#250;n AGENTS.md.
+  - Si AGENTS.md dice &quot;No persistence&quot; o no menciona datos persistentes,
+    NO a&#241;adas base de datos ni Prisma. Mant&#233;n el estado en el cliente.
+  - Si requiere persistencia, usa Prisma ORM (&#250;ltima versi&#243;n) con
+    PostgreSQL. Define el esquema en prisma/schema.prisma, usa migraciones
+    (prisma migrate dev) y un seed con datos de ejemplo. Lee la conexi&#243;n de
+    DATABASE_URL desde .env; crea .env.example sin secretos y a&#241;ade .env
+    al .gitignore. Para PostgreSQL local usa un docker-compose.yml m&#237;nimo.
+  - Accede a los datos desde Server Components, Server Actions o Route
+    Handlers; no expongas Prisma al cliente.
+- Pruebas: Vitest + Testing Library para unitarias; Playwright para
+  integraci&#243;n/E2E.
+- Usa librer&#237;as populares y mantenidas. Si AGENTS.md indica un
+  subdirectorio para la app (por ejemplo `frontend`), crea ah&#237; el proyecto
+  Next.js; si no, en la ra&#237;z.
+- Si AGENTS.md contradice este stack, prevalece AGENTS.md salvo en lo que
+  respecta a Prisma y PostgreSQL, que aplican solo si hay persistencia.
+
+Proceso (respeta la secci&#243;n &quot;Strategy&quot; de AGENTS.md; si no existe, usa esta):
+
+1. Antes de escribir c&#243;digo, crea PLAN.md con fases y criterios de &#233;xito
+   marcables (checkboxes) para cada fase: andamiaje (incluido .gitignore),
+   modelo de datos si aplica, funcionalidades, interfaz, pruebas
+   unitarias, pruebas de integraci&#243;n y arranque final.
+2. Ejecuta el plan fase por fase. Al terminar cada fase, ejecuta sus
+   pruebas, marca los criterios cumplidos en PLAN.md y no avances si algo
+   falla.
+3. Escribe pruebas unitarias rigurosas de la l&#243;gica y los componentes
+   clave. Despu&#233;s realiza pruebas de integraci&#243;n con Playwright que
+   recorran los flujos de usuario descritos en los requisitos de negocio;
+   corrige los defectos que aparezcan.
+4. Termina solo cuando el MVP est&#233; completo y probado, con el servidor
+   en marcha y listo para que yo lo use. Ind&#237;came la URL y los comandos
+   para arrancarlo, probarlo y, si hay base de datos, migrarla y poblarla.
+
+Reglas:
+
+- Respeta los &quot;Coding standards&quot; de AGENTS.md: simplicidad, sin
+  sobreingenier&#237;a, sin funcionalidades extra, sin programaci&#243;n defensiva
+  innecesaria, README m&#237;nimo y sin emojis.
+- No implementes nada fuera del alcance de los requisitos de negocio.
+- No incluyas secretos en el c&#243;digo, los logs ni las respuestas.
+- Usa la UI y los textos en el idioma que indique AGENTS.md; si no lo
+  indica, en el idioma en que est&#225; escrito.
+- Si algo es ambiguo y no se puede resolver con una decisi&#243;n razonable y
+  simple, preg&#250;ntame antes de continuar; en caso contrario decide t&#250; y
+  documenta la decisi&#243;n en una l&#237;nea en PLAN.md.
+
+Al finalizar, entrega un resumen breve: qu&#233; se construy&#243;, qu&#233; pruebas se
+ejecutaron y con qu&#233; resultado, qu&#233; qued&#243; sin verificar (si algo), y c&#243;mo
+usar la aplicaci&#243;n.
+ ">
+          <h3>Prompt para construir un proyecto desde AGENTS.md</h3>
+          <div class="document-meta">
+            <code>misc/prompt-construir-desde-agents.txt</code><span>TXT</span><span>Recursos complementarios</span>
+          </div>
+          <p class="explanation">Prompt que indica al agente c&#243;mo construir el proyecto descrito en AGENTS.md con Next.js y, si hay persistencia, Prisma y PostgreSQL, con plan por fases, pruebas y arranque final.</p>
+          <div class="snippet-list" aria-label="Prompts y comandos reutilizables">
+            <div class="snippet-card" data-snippet data-kind="prompt" data-claude="false">
+              <div class="snippet-head"><span>Prompt · Prompt completo</span><button type="button" data-copy-target="doc-misc-prompt-construir-desde-agents-txt-snippet-0" aria-label="Copiar Prompt completo de Prompt para construir un proyecto desde AGENTS.md">Copiar</button></div>
+              <pre id="doc-misc-prompt-construir-desde-agents-txt-snippet-0" tabindex="0"><code>Prompt: construir un proyecto desde cero a partir de AGENTS.md
+================================================================
+
+Uso: coloca el AGENTS.md del proyecto en la ra&#237;z de una carpeta vac&#237;a (o
+con solo ese archivo), abre el agente en esa carpeta y pega el prompt de
+abajo. El AGENTS.md define el qu&#233; (requisitos de negocio, detalles
+t&#233;cnicos, colores, estrategia, est&#225;ndares); este prompt define el c&#243;mo
+trabajar y fija el stack.
+
+----------------------------------------------------------------------
+PROMPT
+----------------------------------------------------------------------
+
+Lee el archivo AGENTS.md de la ra&#237;z. Es la &#250;nica fuente de verdad del
+proyecto: requisitos de negocio, detalles t&#233;cnicos, esquema de color,
+estrategia y est&#225;ndares de c&#243;digo. Construye el proyecto completo desde
+cero sigui&#233;ndolo al pie de la letra.
+
+Stack obligatorio:
+
+- Next.js (&#250;ltima versi&#243;n estable, App Router) con TypeScript.
+- Tailwind CSS para estilos, usando exactamente los colores del AGENTS.md.
+- Persistencia: decide seg&#250;n AGENTS.md.
+  - Si AGENTS.md dice &quot;No persistence&quot; o no menciona datos persistentes,
+    NO a&#241;adas base de datos ni Prisma. Mant&#233;n el estado en el cliente.
+  - Si requiere persistencia, usa Prisma ORM (&#250;ltima versi&#243;n) con
+    PostgreSQL. Define el esquema en prisma/schema.prisma, usa migraciones
+    (prisma migrate dev) y un seed con datos de ejemplo. Lee la conexi&#243;n de
+    DATABASE_URL desde .env; crea .env.example sin secretos y a&#241;ade .env
+    al .gitignore. Para PostgreSQL local usa un docker-compose.yml m&#237;nimo.
+  - Accede a los datos desde Server Components, Server Actions o Route
+    Handlers; no expongas Prisma al cliente.
+- Pruebas: Vitest + Testing Library para unitarias; Playwright para
+  integraci&#243;n/E2E.
+- Usa librer&#237;as populares y mantenidas. Si AGENTS.md indica un
+  subdirectorio para la app (por ejemplo `frontend`), crea ah&#237; el proyecto
+  Next.js; si no, en la ra&#237;z.
+- Si AGENTS.md contradice este stack, prevalece AGENTS.md salvo en lo que
+  respecta a Prisma y PostgreSQL, que aplican solo si hay persistencia.
+
+Proceso (respeta la secci&#243;n &quot;Strategy&quot; de AGENTS.md; si no existe, usa esta):
+
+1. Antes de escribir c&#243;digo, crea PLAN.md con fases y criterios de &#233;xito
+   marcables (checkboxes) para cada fase: andamiaje (incluido .gitignore),
+   modelo de datos si aplica, funcionalidades, interfaz, pruebas
+   unitarias, pruebas de integraci&#243;n y arranque final.
+2. Ejecuta el plan fase por fase. Al terminar cada fase, ejecuta sus
+   pruebas, marca los criterios cumplidos en PLAN.md y no avances si algo
+   falla.
+3. Escribe pruebas unitarias rigurosas de la l&#243;gica y los componentes
+   clave. Despu&#233;s realiza pruebas de integraci&#243;n con Playwright que
+   recorran los flujos de usuario descritos en los requisitos de negocio;
+   corrige los defectos que aparezcan.
+4. Termina solo cuando el MVP est&#233; completo y probado, con el servidor
+   en marcha y listo para que yo lo use. Ind&#237;came la URL y los comandos
+   para arrancarlo, probarlo y, si hay base de datos, migrarla y poblarla.
+
+Reglas:
+
+- Respeta los &quot;Coding standards&quot; de AGENTS.md: simplicidad, sin
+  sobreingenier&#237;a, sin funcionalidades extra, sin programaci&#243;n defensiva
+  innecesaria, README m&#237;nimo y sin emojis.
+- No implementes nada fuera del alcance de los requisitos de negocio.
+- No incluyas secretos en el c&#243;digo, los logs ni las respuestas.
+- Usa la UI y los textos en el idioma que indique AGENTS.md; si no lo
+  indica, en el idioma en que est&#225; escrito.
+- Si algo es ambiguo y no se puede resolver con una decisi&#243;n razonable y
+  simple, preg&#250;ntame antes de continuar; en caso contrario decide t&#250; y
+  documenta la decisi&#243;n en una l&#237;nea en PLAN.md.
+
+Al finalizar, entrega un resumen breve: qu&#233; se construy&#243;, qu&#233; pruebas se
+ejecutaron y con qu&#233; resultado, qu&#233; qued&#243; sin verificar (si algo), y c&#243;mo
+usar la aplicaci&#243;n.
+</code></pre>
+            </div>
+          </div>
+          <details class="source-details">
+            <summary>Ver contenido original completo</summary>
+            <pre class="source-content" tabindex="0"><code>Prompt: construir un proyecto desde cero a partir de AGENTS.md
+================================================================
+
+Uso: coloca el AGENTS.md del proyecto en la ra&#237;z de una carpeta vac&#237;a (o
+con solo ese archivo), abre el agente en esa carpeta y pega el prompt de
+abajo. El AGENTS.md define el qu&#233; (requisitos de negocio, detalles
+t&#233;cnicos, colores, estrategia, est&#225;ndares); este prompt define el c&#243;mo
+trabajar y fija el stack.
+
+----------------------------------------------------------------------
+PROMPT
+----------------------------------------------------------------------
+
+Lee el archivo AGENTS.md de la ra&#237;z. Es la &#250;nica fuente de verdad del
+proyecto: requisitos de negocio, detalles t&#233;cnicos, esquema de color,
+estrategia y est&#225;ndares de c&#243;digo. Construye el proyecto completo desde
+cero sigui&#233;ndolo al pie de la letra.
+
+Stack obligatorio:
+
+- Next.js (&#250;ltima versi&#243;n estable, App Router) con TypeScript.
+- Tailwind CSS para estilos, usando exactamente los colores del AGENTS.md.
+- Persistencia: decide seg&#250;n AGENTS.md.
+  - Si AGENTS.md dice &quot;No persistence&quot; o no menciona datos persistentes,
+    NO a&#241;adas base de datos ni Prisma. Mant&#233;n el estado en el cliente.
+  - Si requiere persistencia, usa Prisma ORM (&#250;ltima versi&#243;n) con
+    PostgreSQL. Define el esquema en prisma/schema.prisma, usa migraciones
+    (prisma migrate dev) y un seed con datos de ejemplo. Lee la conexi&#243;n de
+    DATABASE_URL desde .env; crea .env.example sin secretos y a&#241;ade .env
+    al .gitignore. Para PostgreSQL local usa un docker-compose.yml m&#237;nimo.
+  - Accede a los datos desde Server Components, Server Actions o Route
+    Handlers; no expongas Prisma al cliente.
+- Pruebas: Vitest + Testing Library para unitarias; Playwright para
+  integraci&#243;n/E2E.
+- Usa librer&#237;as populares y mantenidas. Si AGENTS.md indica un
+  subdirectorio para la app (por ejemplo `frontend`), crea ah&#237; el proyecto
+  Next.js; si no, en la ra&#237;z.
+- Si AGENTS.md contradice este stack, prevalece AGENTS.md salvo en lo que
+  respecta a Prisma y PostgreSQL, que aplican solo si hay persistencia.
+
+Proceso (respeta la secci&#243;n &quot;Strategy&quot; de AGENTS.md; si no existe, usa esta):
+
+1. Antes de escribir c&#243;digo, crea PLAN.md con fases y criterios de &#233;xito
+   marcables (checkboxes) para cada fase: andamiaje (incluido .gitignore),
+   modelo de datos si aplica, funcionalidades, interfaz, pruebas
+   unitarias, pruebas de integraci&#243;n y arranque final.
+2. Ejecuta el plan fase por fase. Al terminar cada fase, ejecuta sus
+   pruebas, marca los criterios cumplidos en PLAN.md y no avances si algo
+   falla.
+3. Escribe pruebas unitarias rigurosas de la l&#243;gica y los componentes
+   clave. Despu&#233;s realiza pruebas de integraci&#243;n con Playwright que
+   recorran los flujos de usuario descritos en los requisitos de negocio;
+   corrige los defectos que aparezcan.
+4. Termina solo cuando el MVP est&#233; completo y probado, con el servidor
+   en marcha y listo para que yo lo use. Ind&#237;came la URL y los comandos
+   para arrancarlo, probarlo y, si hay base de datos, migrarla y poblarla.
+
+Reglas:
+
+- Respeta los &quot;Coding standards&quot; de AGENTS.md: simplicidad, sin
+  sobreingenier&#237;a, sin funcionalidades extra, sin programaci&#243;n defensiva
+  innecesaria, README m&#237;nimo y sin emojis.
+- No implementes nada fuera del alcance de los requisitos de negocio.
+- No incluyas secretos en el c&#243;digo, los logs ni las respuestas.
+- Usa la UI y los textos en el idioma que indique AGENTS.md; si no lo
+  indica, en el idioma en que est&#225; escrito.
+- Si algo es ambiguo y no se puede resolver con una decisi&#243;n razonable y
+  simple, preg&#250;ntame antes de continuar; en caso contrario decide t&#250; y
+  documenta la decisi&#243;n en una l&#237;nea en PLAN.md.
+
+Al finalizar, entrega un resumen breve: qu&#233; se construy&#243;, qu&#233; pruebas se
+ejecutaron y con qu&#233; resultado, qu&#233; qued&#243; sin verificar (si algo), y c&#243;mo
+usar la aplicaci&#243;n.
+</code></pre>
+          </details>
         </article>
         <article class="document-card" id="doc-prompts-prompt-agent-md" data-document data-search="Prompt general para el agente prompts/prompt agent.md Instrucciones generales para que el agente reconozca archivos de contexto y trabaje dentro del repositorio.  Recursos complementarios Analiza este repositorio y crea un archivo AGENTS.md en la ra&#237;z que sirva como gu&#237;a pr&#225;ctica para los agentes de programaci&#243;n que trabajen en este proyecto.
 

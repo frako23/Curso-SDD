@@ -396,12 +396,12 @@ foreach ($entry in @($manifest.documents)) {
     }
 }
 
-if ($documents.Count -ne 51) {
-    throw "El corpus debe contener 51 documentos y contiene $($documents.Count)."
+if ($documents.Count -ne 53) {
+    throw "El corpus debe contener 53 documentos y contiene $($documents.Count)."
 }
 
 $extensionCounts = @($documents | Group-Object type | ForEach-Object { "$(($_.Name).ToLowerInvariant())=$($_.Count)" })
-$expectedCounts = @('md=4', 'pdf=1', 'txt=45', 'yaml=1')
+$expectedCounts = @('md=5', 'pdf=1', 'txt=46', 'yaml=1')
 if ((@($extensionCounts | Sort-Object) -join '|') -ne (@($expectedCounts | Sort-Object) -join '|')) {
     throw "Conteos de extensión inesperados: $($extensionCounts -join ', ')"
 }

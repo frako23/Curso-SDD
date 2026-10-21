@@ -18,7 +18,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-document
 Resultado esperado:
 
 - Se genera o actualiza `index.html`.
-- El generador informa el inventario encontrado y confirma que contiene 51 archivos documentales.
+- El generador informa el inventario encontrado y confirma que contiene 53 archivos documentales.
 - El PDF original permanece en `misc\Claude_Course_Course_-_Prompts_Workflow_2026_.pdf`.
 
 ## Validar el inventario y el contenido generado
@@ -30,7 +30,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-docum
 Resultado esperado:
 
 - Las rutas declaradas existen.
-- Los conteos por extensión son 45 `.txt`, 4 `.md`, 1 `.yaml` y 1 `.pdf`.
+- Los conteos por extensión son 46 `.txt`, 5 `.md`, 1 `.yaml` y 1 `.pdf`.
 - `index.html` contiene todas las secciones y los documentos esperados.
 - Cada bloque reutilizable tiene texto y un control de copia asociado.
 
